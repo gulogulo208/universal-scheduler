@@ -1,4 +1,6 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");3
+
+class Role extends Model {}
 
 Role.init(
     {

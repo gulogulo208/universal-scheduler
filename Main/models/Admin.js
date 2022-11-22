@@ -69,3 +69,5 @@ User.init(
 );
 
 module.exports = Admin;
+
+module.exports = Admin;

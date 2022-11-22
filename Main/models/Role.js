@@ -27,7 +27,7 @@ Role.init(
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: "admin",
+      modelName: "role",
     }
   );
   

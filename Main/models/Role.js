@@ -1,4 +1,6 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");3
+
+class Role extends Model {}
 
 Role.init(
     {
@@ -25,7 +27,7 @@ Role.init(
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: "admin",
+      modelName: "role",
     }
   );
   

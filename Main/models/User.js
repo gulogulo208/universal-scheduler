@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const sequelize = require("../config/config");
 
 // Create user model
-class Admin extends Model {
+class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
@@ -64,8 +64,8 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "admin",
+    modelName: "user",
   }
 );
 
-module.exports = Admin;
+module.exports = User;

@@ -4,49 +4,36 @@ const Division = require('./Division');
 const Project = require('./Project');
 const Employee = require('./Employee');
 const Permission = require('./Permissions');
+const EmployeeAssignments = require('./EmployeeAssignments');
 
-Organization.hasMany(Division, {
-    foreignKey: "division_id", 
-    onDelete: 'CASCADE'
+User.hasOne(Permissions, {
+    foreignKey: "permission_id", 
+    onDelete: null
 });
 
-Division.hasOne(Organization, {
-    foreignKey: "organization_id", 
-});
-
-Division.hasOne(Organization, {
-    foreignKey: "organization_id", 
-});
-
-Organization.hasMany(Employee, {
-    foreignKey: "organization_id", 
-});
-
-Employee.hasOne(Organization, {
-    foreignKey: "organization_id",
-});
-
-Division.hasMany(Project, {
-    foreignKey: "project_id", 
-});
-
-Project.hasOne(Division, {
-    foreignKey: 'division_id'
-});
-
-Project.hasMany(Employee, {
-    foreignKey: "employee_id"
+Employee.belongsTo(User, {
+    foreignKey: "user_id", 
+    onDelete: "CASCADE"
 });
 
 Employee.hasMany(Project, {
-    foreignKey: "project_id"
+    through: EmployeeAssignments,
+    foreignKey: "project_id", 
+    onDelete: null
 });
 
-Employee.hasOne(Permission, {
-    foreignKey: "permission_id"
+Project.hasMany(Employee, {
+    through: EmployeeAssignments,
+    foreignKey: "employee_id", 
+    onDelete: null
 });
 
-Permission.hasMany(Employee, {
-    foreignKey: "employee_id"
+Employee.hasOne(Division, {
+    foreignKey: "division_id", 
+    onDelete: null
 });
 
+Employee.hasOne(Organization, {
+    foreignKey: "organization_id", 
+    onDelete: null
+});

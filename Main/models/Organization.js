@@ -11,7 +11,7 @@ Organization.init(
         primaryKey: true,
         autoIncrement: true,
       },
-      business_name: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -1,8 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
 
-class Shift extends Model {}
+class Permission extends Model {};
 
-Shift.init(
+//userID, organizatonID, roleID
+
+Permission.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,40 +12,35 @@ Shift.init(
         primaryKey: true,
         autoIncrement: true,
       },
-      title: {
-        type: dataTypes.STRING,
-        allowNull: false,
-      },
-      division_id: {
-          type: DataTypes.INTEGER, 
+      user_id: {
+        type: DataTypes.INTEGER, 
           references: {
-              model: 'Division', 
+              model: 'user', 
               key: 'id'
           },
       },
-      project_id: {
+      organization_id: {
+          type: DataTypes.INTEGER, 
+          references: {
+              model: 'organization', 
+              key: 'id'
+          },
+      },
+      role_id: {
         type: DataTypes.INTEGER, 
         references: {
-            model: 'Project', 
+            model: 'role', 
             key: 'id'
-        }
-      }, 
-      shift_start: {
-        type: DataTypes.DATETIME, 
-        allowNull: true
-      }, 
-      shift_end: {
-        type: DataTypes.DATETIME, 
-        allowNull: true
-      }
+        },
+    },
     },
     {
       sequelize,
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: "admin",
+      modelName: "permission",
     }
   );
   
-  module.exports = Shift;
+  module.exports = Permission;

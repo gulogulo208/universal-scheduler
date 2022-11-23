@@ -1,5 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 
+
+
 class Division extends Model {};
 
 Division.init(
@@ -10,16 +12,9 @@ Division.init(
         primaryKey: true,
         autoIncrement: true,
       },
-      title: {
+      div_name: {
         type: dataTypes.STRING,
         allowNull: false,
-      },
-      organization_id: {
-          type: DataTypes.INTEGER,
-          references: {
-              model: 'organization', 
-              key: 'id'
-          },
       },
     },
     {

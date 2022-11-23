@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const sequelize = require('../config/connection');
 
 class Permission extends Model {};
 
@@ -12,28 +13,11 @@ Permission.init(
         primaryKey: true,
         autoIncrement: true,
       },
-      user_id: {
+      access_level: {
         type: DataTypes.INTEGER, 
-          references: {
-              model: 'user', 
-              key: 'id'
-          },
+        defaultValue: 1
+      }
       },
-      organization_id: {
-          type: DataTypes.INTEGER, 
-          references: {
-              model: 'organization', 
-              key: 'id'
-          },
-      },
-      role_id: {
-        type: DataTypes.INTEGER, 
-        references: {
-            model: 'role', 
-            key: 'id'
-        },
-    },
-    },
     {
       sequelize,
       timestamps: false,

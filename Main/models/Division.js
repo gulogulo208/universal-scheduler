@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-
+const sequelize = require('../config/connection');
 
 
 class Division extends Model {};
@@ -13,7 +13,7 @@ Division.init(
         autoIncrement: true,
       },
       div_name: {
-        type: dataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

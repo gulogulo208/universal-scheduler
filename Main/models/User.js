@@ -18,23 +18,19 @@ User.init(
       autoIncrement: true,
     },
     first_name: {
-      type: dataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     last_name: {
-      type: dataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    role: {
-        type: DataTypes.INTEGER, 
-        references: {
-            model: 'role', 
-            key: 'id'
-        },
+      validate: {
+        isEmail: true
+      }
     },
     password: {
       type: DataTypes.STRING,

@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const sequelize = require('../config/connection');
 
 class Organization extends Model {};
 
@@ -10,9 +11,13 @@ Organization.init(
         primaryKey: true,
         autoIncrement: true,
       },
-      title: {
-        type: dataTypes.STRING,
+      business_name: {
+        type: DataTypes.STRING,
         allowNull: false,
+      },
+      business_type: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       division_id: {
           type: DataTypes.INTEGER,

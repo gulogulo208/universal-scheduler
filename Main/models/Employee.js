@@ -23,6 +23,38 @@ Employee.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        manager_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'project',
+              key: 'manager_id',
+            },
+          },
+          is_manager: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        division_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'division',
+              key: 'id',
+            },
+          },
+          organization_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'organization',
+              key: 'id',
+            },
+          },
+          project_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'project',
+              key: 'id',
+            },
+          },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -30,5 +62,7 @@ Employee.init(
               key: 'id',
             },
           },
-    }
+    },
 )
+
+module.exports = Employee;

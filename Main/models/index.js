@@ -28,6 +28,11 @@ Project.belongsToMany(Employee, {
   onDelete: null,
 });
 
+Employee.hasOne(Project, {
+  through: EmployeeAssignments,
+  foreignKey: "employee_id",
+});
+
 Employee.hasOne(Division, {
   foreignKey: "division_id",
   onDelete: null,

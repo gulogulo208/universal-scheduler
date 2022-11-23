@@ -1,4 +1,4 @@
-const User = require('./User');
+const User = require('./User')
 const Organization = require('./Organization');
 const Division = require('./Division');
 const Project = require('./Project');

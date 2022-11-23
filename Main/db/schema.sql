@@ -1,2 +1,4 @@
-DROP DATABASE IF EXISTS scheduler_db;
-CREATE DATABASE scheduler_db;
+DROP DATABASE IF EXISTS management_db;
+CREATE DATABASE management_db;
+
+USE management_db;

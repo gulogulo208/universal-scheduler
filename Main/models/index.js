@@ -17,12 +17,8 @@ Employee.belongsTo(User, {
 });
 
 Employee.belongsTo(Project, {
-    foreignKey: "manager_id", 
-})
-
-EmployeeAssignments.belongsToMany(Project, {
-    foreignKey: "manager_id"
-})
+  foreignKey: "manager_id",
+});
 
 Employee.belongsToMany(Project, {
   through: EmployeeAssignments,

@@ -46,3 +46,13 @@ Employee.hasOne(Organization, {
   foreignKey: "organization_id",
   onDelete: null,
 });
+
+module.exports = {
+  User,
+  Organization,
+  Division,
+  Project,
+  Employee,
+  Permissions,
+  EmployeeAssignments,
+};

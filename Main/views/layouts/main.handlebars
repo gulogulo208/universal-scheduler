@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universal Scheduler</title>
+    <title>Universal Manager</title>
     {{!-- jQuery --}}
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     {{!-- Bootstrap CSS --}}
@@ -13,15 +13,69 @@
 <body>
     <nav class="navbar navbar-expand-lg border-bottom border-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Universal Scheduler</a>
+        <a class="navbar-brand" href="/">Universal Manager</a>
         <div class="justify-content-end">
-            <a class="btn btn-outline-dark" id="loginBtn" href="/login">Login</a>
+          {{#if logged_in}}
+            <button type="button" class="btn btn-outline-danger" id="logoutBtn">Logout</button>
+          {{else}}
+            <button type="button" class="btn btn-outline-dark" id="loginBtn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            {{/if}}
         </div>
       </div>
     </nav>
+    {{!-- Login Modal --}}
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3 needs-validation" id="loginForm" novalidate>
+    <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+        <div class="input-group has-validation">
+            <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+        <div class="invalid-feedback">
+            Please enter a valid email
+        </div>
+        </div>
+    </div>
+    <div class="col-12">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="••••••" required>
+        <div class="invalid-feedback">
+            Password must be at least 6 characters
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+            Agree to <a href="https://www.google.com" target="_blank">terms and conditions</a>
+        </label>
+        <div class="invalid-feedback">
+            You must agree before submitting
+        </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Login</button>
+        <a class="btn btn-secondary" href="/signup">Sign Up</a>
+    </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
     {{{body}}}
 {{!-- Custom JS --}}
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{else}}
 <script src="/js/login.js"></script>
+{{/if}}
 {{!-- Bootstrap JS --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>

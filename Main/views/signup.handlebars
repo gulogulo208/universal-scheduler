@@ -1,0 +1,62 @@
+<div class="container mt-3 text-center">
+    <h1>Sign Up</h1>
+</div>
+<hr>
+<div class="container">
+<form class="row g-3 needs-validation" id="signupForm" novalidate>
+  <div class="col-md-4">
+    <label for="first_name" class="form-label">First name</label>
+    <input type="text" class="form-control" id="first_name" placeholder="John" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="last_name" class="form-label">Last name</label>
+    <input type="text" class="form-control" id="last_name" placeholder="Doe" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="signupEmail" class="form-label">Email</label>
+    <div class="input-group has-validation">
+      <input type="email" class="form-control" id="signupEmail" placeholder="name@example.com" required>
+      <div class="invalid-feedback">
+        Please enter a valid email
+      </div>
+    </div>
+  </div>
+   <div class="col-md-4">
+    <label for="signupPassword" class="form-label">Password</label>
+    <div class="input-group has-validation">
+      <input type="password" class="form-control" id="signupPassword" placeholder="••••••" required>
+      <div class="invalid-feedback">
+        Password must be at least 6 characters
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="position" class="form-label">Position</label>
+    <input type="text" class="form-control" id="position" placeholder="HR Manager" required>
+    <div class="invalid-feedback">
+      Please provide your current position
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="signupInvalidCheck" required>
+      <label class="form-check-label" for="signupInvalidCheck">
+        Agree to <a href="https://www.google.com" target="_blank">terms and conditions</a>
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+  </div>
+</form>
+</div>
+<script src="/js/signup.js"></script>

@@ -20,7 +20,11 @@ Project.init(
       allowNull: false,
     },
     manager_id: {
-      type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'employee', 
+            key: 'id'
+        },
     },
   },
   {

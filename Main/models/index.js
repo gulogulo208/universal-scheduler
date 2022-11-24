@@ -16,6 +16,14 @@ Employee.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
+Employee.belongsTo(Project, {
+    foreignKey: "manager_id", 
+})
+
+EmployeeAssignments.belongsToMany(Project, {
+    foreignKey: "manager_id"
+})
+
 Employee.belongsToMany(Project, {
   through: EmployeeAssignments,
   foreignKey: "project_id",

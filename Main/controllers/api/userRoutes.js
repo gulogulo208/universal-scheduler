@@ -91,7 +91,7 @@ router.post("/signup", async (req, res) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       position: req.body.position,
-      isManager: true,
+      is_manager: true,
       user_id: userData.id,
     });
 

@@ -24,7 +24,11 @@ router.get("/dashboard", async (req, res) => {
 
     const employee = employeeData.get({ plain: true });
 
-    res.render("dashboard", { employee, logged_in: req.session.logged_in });
+    res.render("dashboard", {
+      layout: "panel",
+      employee,
+      logged_in: req.session.logged_in,
+    });
   } catch (error) {}
 });
 

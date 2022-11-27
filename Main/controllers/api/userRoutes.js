@@ -44,12 +44,15 @@ router.post("/login", async (req, res) => {
 
     if (!userData) {
       res.status(400).json({ message: "Invalid email. Please try again." });
+      return;
     }
 
     const validPassword = userData.checkPassword(req.body.password);
+    //console.log(validPassword);
 
     if (!validPassword) {
       res.status(400).json({ message: "Invalid password. Please try again" });
+      return;
     }
 
     req.session.save(() => {

@@ -10,7 +10,9 @@ router.post("/", async (req, res) => {
 
     if (!divData) {
       res.status(400).json({ message: "Couldn't create new Division" });
+      return;
     }
+    
   } catch (error) {
     res.status(500).json(error);
   }

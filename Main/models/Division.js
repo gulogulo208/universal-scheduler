@@ -13,7 +13,7 @@ Division.init(
     },
     div_name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
   },
   {

@@ -18,6 +18,7 @@ router.get("/", (req, res) => {
 
 router.get("/signup", (req, res) => {
   res.render("signup", { logged_in: req.session.logged_in });
+  return;
 });
 
 router.get("/dashboard", async (req, res) => {
@@ -39,24 +40,15 @@ router.get("/dashboard", async (req, res) => {
 
     const divData = await Division.findAll();
     console.log(divData);
-    const division = divData.get({ plain: true });
+    const division = divData.map(val => val.get({ plain: true }));
 
-    if (!division) {
-      res.render("dashboard", {
-        layout: "panel",
-        organization,
-        employee,
-        logged_in: req.session.logged_in,
-      });
-    } else {
-      res.render("dashboard", {
+    res.render("dashboard", {
         layout: "panel",
         organization,
         employee,
         division,
         logged_in: req.session.logged_in,
-      });
-    }
+    })
   } catch (error) {
     res.status(500).json(error);
   }

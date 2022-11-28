@@ -10,7 +10,7 @@ const showDivisionModal = () => {
         event.preventDefault();
         const response = await fetch("/api/division", {
           method: "POST",
-          body: JSON.stringify(div_name),
+          body: JSON.stringify({ div_name }),
           headers: {
             "Content-Type": "application/json",
           },

@@ -5,6 +5,8 @@ const requestSignup = async () => {
     const email = document.getElementById("signupEmail").value.trim();
     const password = document.getElementById("signupPassword").value.trim();
     const position = document.getElementById("position").value;
+    const title = document.getElementById("title").value;
+    const type = document.getElementById("business_type").value;
 
     if (first_name && last_name && email && password && position) {
       const response = await fetch("/api/users/signup", {
@@ -15,6 +17,8 @@ const requestSignup = async () => {
           email,
           password,
           position,
+          title,
+          type,
         }),
         headers: {
           "Content-Type": "application/json",

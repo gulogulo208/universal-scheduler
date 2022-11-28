@@ -1,6 +1,6 @@
 // Imports
 const router = require("express").Router();
-const { User, Employee } = require("../../models");
+const { User, Employee, Organization } = require("../../models");
 
 // User Routes
 // router.get("/", async (req, res) => {
@@ -88,6 +88,17 @@ router.post("/signup", async (req, res) => {
 
     if (!userData) {
       res.status(400).json({ message: "Couldn't create a new User" });
+      return;
+    }
+
+    const orgData = await Organization.create({
+      title: req.body.title,
+      business_type: req.body.type,
+    });
+
+    if (!orgData) {
+      res.status(400).json({ message: "Couldn't create a new Organization" });
+      return;
     }
 
     const employeeData = await Employee.create({
@@ -96,16 +107,20 @@ router.post("/signup", async (req, res) => {
       position: req.body.position,
       is_manager: true,
       user_id: userData.id,
+      organization_id: orgData.id,
     });
 
     if (!employeeData) {
       res.status(400).json({ message: "Couldn't create a new Employee" });
+      return;
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.email = userData.email;
       req.session.logged_in = true;
+      req.session.org_title = orgData.title;
+      req.session.is_manager = employeeData.is_manager;
 
       res.status(200).json({ message: "You are now signed up logged in" });
     });

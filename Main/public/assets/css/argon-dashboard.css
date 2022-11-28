@@ -281,6 +281,11 @@ a:hover {
   text-decoration: none;
 }
 
+.createBtn:hover {
+  font-size: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+
 a:not([href]):not([class]),
 a:not([href]):not([class]):hover {
   color: inherit;

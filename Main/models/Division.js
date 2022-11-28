@@ -1,29 +1,28 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require('../config/connection');
+const sequelize = require("../config/connection");
 
-
-class Division extends Model {};
+class Division extends Model {}
 
 Division.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      div_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-      sequelize,
-      timestamps: false,
-      freezeTableName: true,
-      underscored: true,
-      modelName: "division",
-    }
-  );
-  
-  module.exports = Division;
+    div_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "division",
+  }
+);
+
+module.exports = Division;

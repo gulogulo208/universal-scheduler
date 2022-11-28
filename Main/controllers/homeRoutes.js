@@ -1,11 +1,15 @@
-const { Employee } = require("../models");
+const { Employee, Organization, Project, Division } = require("../models");
 
 // Imports
 const router = require("express").Router();
 
 // Routes
 router.get("/", (req, res) => {
-  res.render("home", { logged_in: req.session.logged_in });
+  if (!req.session.logged_in) {
+    res.render("home", { logged_in: req.session.logged_in });
+  } else {
+    res.redirect("/dashboard");
+  }
 });
 
 // router.get("/login", (req, res) => {
@@ -18,18 +22,44 @@ router.get("/signup", (req, res) => {
 
 router.get("/dashboard", async (req, res) => {
   try {
+    if (!req.session.logged_in) {
+      res.redirect("/");
+    }
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
 
     const employee = employeeData.get({ plain: true });
 
-    res.render("dashboard", {
-      layout: "panel",
-      employee,
-      logged_in: req.session.logged_in,
+    const orgData = await Organization.findOne({
+      where: { id: employeeData.organization_id },
     });
-  } catch (error) {}
+
+    const organization = orgData.get({ plain: true });
+
+    const divData = await Division.findAll();
+    console.log(divData);
+    const division = divData.get({ plain: true });
+
+    if (!division) {
+      res.render("dashboard", {
+        layout: "panel",
+        organization,
+        employee,
+        logged_in: req.session.logged_in,
+      });
+    } else {
+      res.render("dashboard", {
+        layout: "panel",
+        organization,
+        employee,
+        division,
+        logged_in: req.session.logged_in,
+      });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;

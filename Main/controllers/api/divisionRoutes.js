@@ -12,6 +12,8 @@ router.post("/", async (req, res) => {
       res.status(400).json({ message: "Couldn't create new Division" });
       return;
     }
+
+    res.status(200).json({message: "Division created successfully"})
     
   } catch (error) {
     res.status(500).json(error);

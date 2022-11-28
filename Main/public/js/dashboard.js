@@ -29,7 +29,22 @@ const handleCreateDivision = async (event) => {
   }
 };
 
+const showProjectModal = () => {
+  $("#projectModal").show();
+
+  const createProject = document.getElementById("createProject");
+
+  // if (createProject) {
+  //   createProject.addEventListener("click", )
+  // }
+};
+
 let divisionBtn = document.getElementById("divisionBtn");
 if (divisionBtn) {
   divisionBtn.addEventListener("click", showDivisionModal);
+}
+
+let projectBtn = document.getElementById("projectBtn");
+if (projectBtn) {
+  projectBtn.addEventListener("click", showProjectModal);
 }

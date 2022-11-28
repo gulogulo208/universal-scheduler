@@ -25,6 +25,7 @@ router.get("/dashboard", async (req, res) => {
   try {
     if (!req.session.logged_in) {
       res.redirect("/");
+      return;
     }
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
@@ -40,15 +41,15 @@ router.get("/dashboard", async (req, res) => {
 
     const divData = await Division.findAll();
     console.log(divData);
-    const division = divData.map(val => val.get({ plain: true }));
+    const division = divData.map((val) => val.get({ plain: true }));
 
     res.render("dashboard", {
-        layout: "panel",
-        organization,
-        employee,
-        division,
-        logged_in: req.session.logged_in,
-    })
+      layout: "panel",
+      organization,
+      employee,
+      division,
+      logged_in: req.session.logged_in,
+    });
   } catch (error) {
     res.status(500).json(error);
   }

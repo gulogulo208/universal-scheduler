@@ -282,7 +282,7 @@ a:hover {
 }
 
 .createBtn:hover {
-  font-size: 0.5rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease-in-out;
 }
 

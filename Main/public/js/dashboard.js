@@ -35,7 +35,7 @@ const showProjectModal = () => {
   const createProject = document.getElementById("createProject");
 
   if (createProject) {
-    createProject.addEventListener("click", handleCreateProject)
+    createProject.addEventListener("click", handleCreateProject);
   }
 };
 
@@ -50,18 +50,21 @@ const handleCreateProject = async (event) => {
       method: "POST",
       body: JSON.stringify({ project_name, description }),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
 
     if (response.ok) {
       location.reload();
     }
-
   } catch (error) {
     console.error(error);
   }
-}
+};
+
+const showEmployeeModal = () => {
+  $("#employeeModal").show();
+};
 
 let divisionBtn = document.getElementById("divisionBtn");
 if (divisionBtn) {
@@ -71,4 +74,9 @@ if (divisionBtn) {
 let projectBtn = document.getElementById("projectBtn");
 if (projectBtn) {
   projectBtn.addEventListener("click", showProjectModal);
+}
+
+let employeeBtn = document.getElementById("employeeBtn");
+if (employeeBtn) {
+  employeeBtn.addEventListener("click", showEmployeeModal);
 }

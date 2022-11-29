@@ -1,6 +1,6 @@
 // Imports
 const router = require("express").Router();
-const { User, Employee, Organization } = require("../../models");
+const { User, Employee, Organization, Permissions } = require("../../models");
 
 // User Routes
 // router.get("/", async (req, res) => {
@@ -87,12 +87,21 @@ router.post("/logout", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try {
+
+    const testPermissions = await Permissions.create({
+      access_level: 1
+    });
+
+    console.log("testPerm", testPermissions)
+
     const userData = await User.create({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
       password: req.body.password,
+      permission_id: 1
     });
+
 
     if (!userData) {
       res.status(400).json({ message: "Couldn't create a new User" });
@@ -127,6 +136,7 @@ router.post("/signup", async (req, res) => {
       req.session.email = userData.email;
       req.session.logged_in = true;
       req.session.org_id = orgData.id;
+      req.session.permission_id = userData.permission_id;
 
       res.status(200).json({ message: "You are now signed up logged in" });
     });

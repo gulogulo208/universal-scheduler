@@ -1,4 +1,4 @@
-const { Employee, Organization, Project, Division } = require("../models");
+const { Employee, Organization, Project, Division, Permissions } = require("../models");
 
 // Imports
 const router = require("express").Router();
@@ -27,13 +27,17 @@ router.get("/dashboard", async (req, res) => {
       res.redirect("/");
       return;
     }
+
+    //find employee via logged in user data
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
 
+    //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
+    
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
     });

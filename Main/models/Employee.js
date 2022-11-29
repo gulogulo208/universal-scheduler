@@ -23,17 +23,6 @@ Employee.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    is_manager: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    division_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "division",
-        key: "id",
-      },
-    },
     organization_id: {
       type: DataTypes.INTEGER,
       references: {

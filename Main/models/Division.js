@@ -15,6 +15,14 @@ Division.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    organization_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "organization",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,

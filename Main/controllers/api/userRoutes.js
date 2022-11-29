@@ -42,6 +42,10 @@ router.post("/login", async (req, res) => {
       where: { email: req.body.email },
     });
 
+    const empData = await Employee.findOne({
+      where: { user_id: userData.id },
+    });
+
     if (!userData) {
       res.status(400).json({ message: "Invalid email. Please try again." });
       return;
@@ -55,10 +59,14 @@ router.post("/login", async (req, res) => {
       return;
     }
 
+    const user = userData.get({ plain: true });
+    const employee = empData.get({ plain: true });
+
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.email = userData.email;
+      req.session.user_id = user.id;
+      req.session.email = user.email;
       req.session.logged_in = true;
+      req.session.org_id = employee.organization_id;
 
       res.status(200).json({ message: "You are now logged in" });
     });
@@ -105,7 +113,6 @@ router.post("/signup", async (req, res) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       position: req.body.position,
-      is_manager: true,
       user_id: userData.id,
       organization_id: orgData.id,
     });
@@ -119,8 +126,7 @@ router.post("/signup", async (req, res) => {
       req.session.user_id = userData.id;
       req.session.email = userData.email;
       req.session.logged_in = true;
-      req.session.org_title = orgData.title;
-      req.session.is_manager = employeeData.is_manager;
+      req.session.org_id = orgData.id;
 
       res.status(200).json({ message: "You are now signed up logged in" });
     });

@@ -25,13 +25,6 @@ EmployeeAssignments.init(
         key: "id",
       },
     },
-    manager_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "project",
-        key: "manager_id",
-      },
-    },
   },
   {
     sequelize,

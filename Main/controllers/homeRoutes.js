@@ -32,20 +32,23 @@ router.get("/dashboard", async (req, res) => {
     });
 
     const employee = employeeData.get({ plain: true });
+    console.log("EMP_DATA", employee);
 
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
     });
-
     const organization = orgData.get({ plain: true });
+    console.log("ORG_DATA", organization);
 
-    const divData = await Division.findAll();
-    console.log(divData);
+    const divData = await Division.findAll({
+      where: { organization_id: organization.id },
+    });
     const division = divData.map((val) => val.get({ plain: true }));
+    console.log("DIV_DATA", division);
 
     const projectData = await Project.findAll();
-
     const project = projectData.map((val) => val.get({ plain: true }));
+    console.log("PROJ_DATA", project);
 
     res.render("dashboard", {
       layout: "panel",

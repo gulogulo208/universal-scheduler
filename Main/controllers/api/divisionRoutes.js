@@ -6,6 +6,7 @@ router.post("/", async (req, res) => {
   try {
     const divData = await Division.create({
       div_name: req.body.div_name,
+      organization_id: req.session.org_id,
     });
 
     if (!divData) {
@@ -13,8 +14,7 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    res.status(200).json({message: "Division created successfully"})
-    
+    res.status(200).json({ message: "Division created successfully" });
   } catch (error) {
     res.status(500).json(error);
   }

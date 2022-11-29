@@ -43,11 +43,16 @@ router.get("/dashboard", async (req, res) => {
     console.log(divData);
     const division = divData.map((val) => val.get({ plain: true }));
 
+    const projectData = await Project.findAll();
+
+    const project = projectData.map((val) => val.get({ plain: true }));
+
     res.render("dashboard", {
       layout: "panel",
       organization,
       employee,
       division,
+      project,
       logged_in: req.session.logged_in,
     });
   } catch (error) {

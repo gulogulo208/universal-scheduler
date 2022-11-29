@@ -1,4 +1,10 @@
-const { Employee, Organization, Project, Division, Permissions } = require("../models");
+const {
+  Employee,
+  Organization,
+  Project,
+  Division,
+  Permissions,
+} = require("../models");
 
 // Imports
 const router = require("express").Router();
@@ -37,7 +43,6 @@ router.get("/dashboard", async (req, res) => {
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
-    
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
     });

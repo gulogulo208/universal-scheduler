@@ -39,6 +39,14 @@ User.init(
         len: [6],
       },
     },
+    permission_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "permission",
+        key: "id",
+      },
+    },
   },
   {
     hooks: {

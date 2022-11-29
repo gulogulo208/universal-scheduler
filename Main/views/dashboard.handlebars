@@ -103,7 +103,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">{{employee.first_name}}'s Dashboard</h6>
+          <h6 class="font-weight-bolder text-white mb-0">{{employee.first_name}}'s Dashboard | {{organization.title}}</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -222,15 +222,15 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        {{!-- <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Organization</p>
                     <h5 class="font-weight-bolder">
-                      $53,000
+                      Create Organization
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -239,34 +239,34 @@
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
+                  <a href="/dashboard/organization" class="createBtn icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-fat-add ni-4x text-lg opacity-10" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Division</p>
                     <h5 class="font-weight-bolder">
-                      2,300
+                      Create Division
                     </h5>
-                    <p class="mb-0">
+                    {{!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
                       since last week
-                    </p>
+                    </p> --}}
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
+                  <a id="divisionBtn" data-bs-toggle="modal" data-bs-target="#divisionModal" class="createBtn icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-fat-add text-lg opacity-10" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -278,20 +278,20 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Employee</p>
                     <h5 class="font-weight-bolder">
-                      +3,462
+                      Invite Employee
                     </h5>
-                    <p class="mb-0">
+                    {{!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
                       since last quarter
-                    </p>
+                    </p> --}}
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
+                  <a href="/dashboard/employee" class="createBtn icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-fat-add text-lg opacity-10" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -303,26 +303,48 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Project</p>
                     <h5 class="font-weight-bolder">
-                      $103,430
+                      Create Project
                     </h5>
-                    <p class="mb-0">
+                    {{!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-                    </p>
+                    </p> --}}
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
+                  <a id="projectBtn" data-bs-toggle="modal" data-bs-target="#projectModal" class="createBtn icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-fat-add text-lg opacity-10" aria-hidden="true"></i>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-4">
+    <div class="card mt-3">
+    <div class="table-responsive">
+    <table class="table align-items-center mb-0">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Division</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each division}}
+        <tr>
+          <td>
+            <p class="text-xs font-weight-bold mb-0">{{div_name}}</p>
+            <p class="text-xs text-secondary mb-0">ID: {{id}}</p>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+      {{!-- Sales Overview Chart --}}
+      {{!-- <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
@@ -385,50 +407,50 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row mt-4">
+      </div> --}}
+      {{!-- Sales by Country Table --}}
+       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Sales by Country</h6>
+                <h6 class="mb-2">Ongoing Projects</h6>
               </div>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center ">
                 <tbody>
+                  {{#each project}}
                   <tr>
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                          <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                        </div>
                         <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Country:</p>
-                          <h6 class="text-sm mb-0">United States</h6>
+                          <p class="text-xs font-weight-bold mb-0">Project: {{@index}}</p>
+                          <h6 class="text-sm mb-0">{{project_name}}</h6>
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
+                        <p class="text-xs font-weight-bold mb-0">Employees active:</p>
                         <h6 class="text-sm mb-0">2500</h6>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$230,900</h6>
+                        <p class="text-xs font-weight-bold mb-0">Current Date:</p>
+                        <h6 class="text-sm mb-0">1/1/1</h6>
                       </div>
                     </td>
                     <td class="align-middle text-sm">
                       <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">29.9%</h6>
+                        <p class="text-xs font-weight-bold mb-0">Due date:</p>
+                        <h6 class="text-sm mb-0">1/1/1</h6>
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  {{/each}}
+                  {{!-- <tr>
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div>
@@ -520,13 +542,13 @@
                         <h6 class="text-sm mb-0">32.14%</h6>
                       </div>
                     </td>
-                  </tr>
+                  </tr> --}}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
+        {{!--<div class="col-lg-5">
           <div class="card">
             <div class="card-header pb-0 p-3">
               <h6 class="mb-0">Categories</h6>
@@ -593,7 +615,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
+      {{!-- Footer --}}
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
@@ -700,6 +723,72 @@
       </div>
     </div>
   </div>
+      {{!-- Division Modal --}}
+<div class="modal fade" id="divisionModal" tabindex="-1" aria-labelledby="divisionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="divisionModalLabel">Create Division</h1>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" id="divisionForm">
+        <div class="col-12">
+            <label for="div_name" class="form-label">Division Name</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="div_name" placeholder="Finance" required>
+        </div>
+      </div>
+      <div class="col-12">
+        <button id="createDivision" class="btn btn-primary" type="submit">Create</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+      {{!-- Project Modal --}}
+<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="projectModalLabel">Create Project</h1>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" id="projectForm">
+        <div class="col-12">
+            <label for="project_name" class="form-label">Project Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="project_name" placeholder="Train Employees" required>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="description" class="form-label">Project Description</label>
+            <div class="input-group">
+              <textarea class="form-control" id="description" placeholder="Onboard employees with new technology" required></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+          <label for="employeeDataList" class="form-label">Assign Employee(s)</label>
+          <input class="form-control" list="datalistOptions" id="employeeDataList" placeholder="Type to search...">
+          <datalist id="datalistOptions">
+            <option value="Employee 1">
+            <option value="Employee 2">
+            <option value="Employee 3">
+            <option value="Employee 4">
+            <option value="Employee 5">
+          </datalist>
+        </div>
+      <div class="col-12">
+        <button id="createProject" class="btn btn-primary" type="submit">Create</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/dashboard.js"></script>
   {{#if logged_in}}
 <script src="/js/logout.js"></script>
 {{else}}
@@ -711,7 +800,7 @@
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <script>
+  {{!-- <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -793,7 +882,7 @@
         },
       },
     });
-  </script>
+  </script> --}}
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

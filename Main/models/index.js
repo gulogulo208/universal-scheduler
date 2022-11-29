@@ -16,7 +16,11 @@ Employee.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
-Employee.belongsTo(Project, {
+// Employee.belongsTo(Project, {
+//   foreignKey: "manager_id",
+// });
+
+Project.hasOne(Employee, {
   foreignKey: "manager_id",
 });
 
@@ -32,19 +36,26 @@ Project.belongsToMany(Employee, {
   onDelete: null,
 });
 
-Employee.hasOne(Project, {
-  through: EmployeeAssignments,
-  foreignKey: "employee_id",
-});
-
-Employee.hasOne(Division, {
-  foreignKey: "division_id",
-  onDelete: null,
-});
+// Employee.hasOne(Project, {
+//   through: EmployeeAssignments,
+//   foreignKey: "employee_id",
+// });
 
 Employee.hasOne(Organization, {
   foreignKey: "organization_id",
   onDelete: null,
+});
+
+// Organization has many Divisions
+Organization.hasMany(Division);
+
+// Division belongs to Organization
+Division.belongsTo(Organization, {
+  foreignKey: "organization_id",
+});
+
+Project.belongsTo(Division, {
+  foreignKey: "division_id",
 });
 
 module.exports = {

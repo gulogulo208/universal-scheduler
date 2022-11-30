@@ -17,21 +17,21 @@ const PORT = process.env.PORT || 3001;
 
 // Set up Handlebars.js engine with custom helpers
 
-const hbs = exphbs.create({
+// const hbs = exphbs.create({
   
-    // create custom helper 
-    helpers: {
-      permissionCheck: function(value){
-        if (value <= 2) {
-          const permission = true;
-          return permission
-        } else {
-          const permission = false;
-          return permission
-        }
-      }
-    }
-});
+//     // create custom helper 
+//     helpers: {
+//       permissionCheck: function(value){
+//         if (value <= 2) {
+//           const permission = true;
+//           return permission
+//         } else {
+//           const permission = false;
+//           return permission
+//         }
+//       }
+//     }
+// });
 
 const hbs = exphbs.create({ helpers });
 

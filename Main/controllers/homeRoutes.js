@@ -4,6 +4,7 @@ const {
   Project,
   Division,
   Permission,
+  User,
 } = require("../models");
 
 // Imports
@@ -38,11 +39,32 @@ router.get("/dashboard", async (req, res) => {
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
-
+    
     //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
+    // find the sessions user
+    const userData = await User.findOne({
+      where: {id: req.session.user_id}
+    });
+
+    //serialize userData
+    const user = userData.get({ plain: true });
+
+
+    // find permissions of current user
+    const userPermission = await Permission.findOne({
+      where: { id: userData.permission_id}
+    })
+
+    console.log("userPermission", userPermission)
+
+    //serialize permission data
+    const permission = userPermission.get({ plain: true });
+    console.log('permission', permission)
+    const accessLevel = permission.access_level
+    console.log("accessLevel", accessLevel)
 
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
@@ -99,6 +121,7 @@ router.get("/dashboard", async (req, res) => {
       employee,
       division,
       project,
+      accessLevel,
       logged_in: req.session.logged_in,
     });
   } catch (error) {

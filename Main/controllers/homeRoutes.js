@@ -43,6 +43,7 @@ router.get("/dashboard", async (req, res) => {
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
+
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
     });
@@ -55,8 +56,41 @@ router.get("/dashboard", async (req, res) => {
     const division = divData.map((val) => val.get({ plain: true }));
     console.log("DIV_DATA", division);
 
-    const projectData = await Project.findAll();
-    const project = projectData.map((val) => val.get({ plain: true }));
+    console.log("DIVISION", division[0]);
+
+    const scratch = [];
+    const project = [];
+
+    for (let i = 0; i < division.length; i++) {
+      const tempProjectData = await Project.findAll({
+        where: { division_id: division[i].id },
+        attributes: [
+          'id',
+          'project_name',
+          'description',
+          'division_id',
+          'due_date',
+          'createdAt'
+        ],
+        include: [
+          {
+            model: Division,
+          }
+        ]
+      });
+
+      const temp = tempProjectData.map((val) => val.get({ plain: true }));
+
+      //console.log("TEMP_PROJ", temp);
+      scratch.push(temp);
+    }
+
+    for (let i = 0; i < scratch.length; i++) {
+      for (let j = 0; j < scratch[i].length; j++) {
+        project.push(scratch[i][j]);
+      }
+    }
+
     console.log("PROJ_DATA", project);
 
     res.render("dashboard", {

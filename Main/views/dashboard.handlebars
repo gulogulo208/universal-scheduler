@@ -137,9 +137,10 @@
                 </div>
               </a>
             </li>
+            {{!-- Settings --}}
             <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              <a id="settingsBtn" data-bs-toggle="modal" data-bs-target="#settingsModal" class="nav-link text-white p-0">
+                <i class="fa fa-cog cursor-pointer"></i>
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
@@ -833,6 +834,36 @@
       </div>
       <div class="col-12">
         <button id="inviteEmployee" class="btn btn-primary" type="submit">Invite Employee</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Settings Modal --}}
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="settingsModalLabel">Settings</h1>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" id="settingsForm">
+        <div class="col-12">
+            <label for="new_password" class="form-label">New Password</label>
+        <div class="input-group">
+            <input type="password" class="form-control" id="new_password" placeholder="••••••" required>
+        </div>
+      </div>
+      <div class="col-12">
+            <label for="reenter_password" class="form-label">Reenter Password</label>
+        <div class="input-group">
+            <input type="password" class="form-control" id="reenter_password" placeholder="••••••" required>
+        </div>
+      </div>
+      <div class="col-12">
+        <button id="changePassword" class="btn btn-primary" type="submit">Change Password</button>
         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
       </div>
       </form>

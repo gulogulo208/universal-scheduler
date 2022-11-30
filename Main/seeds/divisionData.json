@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "div_name": "Sales",
+        "organization_id": 1
+    },
+    {
+        "id": 2,
+        "div_name": "Finance",
+        "organization_id": 1
+    },
+    {
+        "id": 3,
+        "div_name": "Engineering",
+        "organization_id": 1
+    },
+    {
+        "id": 4,
+        "div_name": "Legal",
+        "organization_id": 1
+    },
+    {
+        "id": 5,
+        "div_name": "Human Resources",
+        "organization_id": 1
+    }
+]

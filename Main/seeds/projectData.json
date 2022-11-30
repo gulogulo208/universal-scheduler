@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "project_name": "Millenium Falcon",
+      "description": "A spaceship that can make the Kessel run in 12 parsecs..",
+      "due_date": "1/31/2023",
+      "manager_id": 1,
+      "division_id": 1
+    },
+    {
+      "id": 2,
+      "project_name": "Seeding Data",
+      "description": "Seed the tables with test data and run to see everything together.",
+      "due_date": "3/31/2023",
+      "manager_id": 2,
+      "division_id": 3
+    },
+    {
+      "id": 3,
+      "project_name": "Simple Video Game",
+      "description": "Create a simple video game for funsies.  Something like Temple Run or Angry Birds.",
+      "due_date": "4/15/2023",
+      "manager_id": 2,
+      "division_id": 3
+    },
+    {
+      "id": 4,
+      "project_name": "BirdsEye vs. Competitor",
+      "description": "Defend IP and write up documents for litigation.",
+      "due_date": "6/25/2023",
+      "manager_id": 2,
+      "division_id": 4
+    }
+  ]

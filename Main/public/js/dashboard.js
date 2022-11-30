@@ -97,6 +97,46 @@ const handleInviteEmployee = async (event) => {
   }
 };
 
+const showSettingsModal = () => {
+  $("#settingsModal").show();
+
+  const changePassword = document.getElementById("changePassword");
+
+  if (changePassword) {
+    changePassword.addEventListener("click", handleChangePassword);
+  }
+};
+
+const handleChangePassword = async (event) => {
+  try {
+    event.preventDefault();
+
+    const new_password = document.getElementById("new_password").value.trim();
+    const reenter_password = document
+      .getElementById("reenter_password")
+      .value.trim();
+
+    if (new_password !== reenter_password) {
+      alert("Passwords must match!");
+      return;
+    }
+
+    const response = await fetch("/api/users/changePassword", {
+      method: "PUT",
+      body: JSON.stringify({ new_password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      location.reload();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 let divisionBtn = document.getElementById("divisionBtn");
 if (divisionBtn) {
   divisionBtn.addEventListener("click", showDivisionModal);
@@ -110,4 +150,9 @@ if (projectBtn) {
 let employeeBtn = document.getElementById("employeeBtn");
 if (employeeBtn) {
   employeeBtn.addEventListener("click", showEmployeeModal);
+}
+
+let settingsBtn = document.getElementById("settingsBtn");
+if (settingsBtn) {
+  settingsBtn.addEventListener("click", showSettingsModal);
 }

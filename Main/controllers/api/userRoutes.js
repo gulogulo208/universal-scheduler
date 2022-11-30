@@ -137,6 +137,29 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.put("/changePassword", async (req, res) => {
+  try {
+    const updatedUser = await User.update(
+      {
+        password: req.body.new_password,
+      },
+      {
+        where: { id: req.session.user_id },
+        individualHooks: true,
+      }
+    );
+
+    if (!updatedUser) {
+      res.status(400).json({ message: "Couldn't change password" });
+      return;
+    }
+
+    res.status(200).end();
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 // router.put("/:id", async (req, res) => {
 //   try {
 //     const userData = await User.update(req.body, {

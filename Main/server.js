@@ -18,7 +18,6 @@ const hbs = exphbs.create({
     helpers: {
       permissionCheck: function(value){
         if (value <= 2) {
-          console.log("true")
           const permission = true;
           return permission
         } else {

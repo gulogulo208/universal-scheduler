@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
     const userData = await User.findOne({
       where: { email: req.body.email },
     });
-
+    
     const empData = await Employee.findOne({
       where: { user_id: userData.id },
     });
@@ -94,6 +94,7 @@ router.post("/signup", async (req, res) => {
       password: req.body.password,
       permission_id: 1,
     });
+    
 
     if (!userData) {
       res.status(400).json({ message: "Couldn't create a new User" });

@@ -1,4 +1,10 @@
-const { Employee, Organization, Project, Division, Permissions } = require("../models");
+const {
+  Employee,
+  Organization,
+  Project,
+  Division,
+  Permission,
+} = require("../models");
 
 // Imports
 const router = require("express").Router();

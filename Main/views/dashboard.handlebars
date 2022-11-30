@@ -289,7 +289,7 @@
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  <a href="/dashboard/employee" class="createBtn icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                  <a id="employeeBtn" data-bs-toggle="modal" data-bs-target="#employeeModal" class="createBtn icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
                     <i class="ni ni-fat-add text-lg opacity-10" aria-hidden="true"></i>
                   </a>
                 </div>
@@ -787,6 +787,48 @@
         </div>
       <div class="col-12">
         <button id="createProject" class="btn btn-primary" type="submit">Create</button>
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- Employee Modal --}}
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="employeeModalLabel">Invite Employee</h1>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" id="employeeForm">
+        <div class="col-12">
+            <label for="first_name" class="form-label">Employee's First Name</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="first_name" placeholder="John" required>
+        </div>
+      </div>
+      <div class="col-12">
+            <label for="last_name" class="form-label">Employee's Last Name</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="last_name" placeholder="Doe" required>
+        </div>
+      </div>
+      <div class="col-12">
+            <label for="email" class="form-label">Employee's Email</label>
+        <div class="input-group">
+            <input type="email" class="form-control" id="email" placeholder="example@email.com" required>
+        </div>
+      </div>
+      <div class="col-12">
+            <label for="position" class="form-label">Employee's Position</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="position" placeholder="Junior Engineer" required>
+        </div>
+      </div>
+      <div class="col-12">
+        <button id="inviteEmployee" class="btn btn-primary" type="submit">Invite Employee</button>
         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cancel</button>
       </div>
       </form>

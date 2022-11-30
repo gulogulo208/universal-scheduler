@@ -45,10 +45,12 @@ const handleCreateProject = async (event) => {
 
     const project_name = document.getElementById("project_name").value;
     const description = document.getElementById("description").value;
+    const due_date = document.getElementById("due_date").value;
+    const div_id = document.getElementById("div_id").value;
 
     const response = await fetch("/api/project", {
       method: "POST",
-      body: JSON.stringify({ project_name, description }),
+      body: JSON.stringify({ project_name, description, div_id, due_date }),
       headers: {
         "Content-Type": "application/json",
       },

@@ -1,11 +1,13 @@
 const router = require("express").Router();
-const { Project } = require("../../models");
+const { Project, Division } = require("../../models");
 
 router.post("/", async (req, res) => {
   try {
     const projectData = await Project.create({
       project_name: req.body.project_name,
       description: req.body.description,
+      due_date: req.body.due_date,
+      division_id: req.body.div_id,
     });
 
     if (!projectData) {

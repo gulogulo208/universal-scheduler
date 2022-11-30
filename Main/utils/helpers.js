@@ -3,12 +3,12 @@ module.exports = {
         return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
     },
     permissionCheck: function(value){
-        if (value <= 2) {
-          const permission = true;
-          return permission
+        if (value <= 1) {
+          const permissionValidated = true;
+          return permissionValidated
         } else {
-          const permission = false;
-          return permission
+          const permissionValidated = false;
+          return permissionValidated
         }
       }
 }

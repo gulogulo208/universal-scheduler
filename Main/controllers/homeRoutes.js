@@ -34,6 +34,7 @@ router.get("/dashboard", async (req, res) => {
       res.redirect("/");
       return;
     }
+    console.log('top of dashboard')
 
     //find employee via logged in user data
     const employeeData = await Employee.findOne({
@@ -55,7 +56,7 @@ router.get("/dashboard", async (req, res) => {
 
     // find permissions of current user
     const userPermission = await Permission.findOne({
-      where: { id: userData.permission_id}
+      where: { id: user.permission_id}
     })
 
     console.log("userPermission", userPermission)

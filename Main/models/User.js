@@ -28,7 +28,12 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      indexes: [
+        {
+          unique: true,
+          fields: ["email"],
+        },
+      ],
       validate: {
         isEmail: true,
       },

@@ -30,22 +30,22 @@
 const showLoginModal = () => {
   $("#loginModal").show();
 
-  const inputs = document.querySelectorAll(".needs-validation");
+  // const inputs = document.querySelectorAll(".needs-validation");
 
-  Array.from(inputs).forEach((form) => {
-    form.addEventListener(
-      "submit",
-      (event) => {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
+  // Array.from(inputs).forEach((form) => {
+  //   form.addEventListener(
+  //     "submit",
+  //     (event) => {
+  //       if (!form.checkValidity()) {
+  //         event.preventDefault();
+  //         event.stopPropagation();
+  //       }
 
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
+  //       form.classList.add("was-validated");
+  //     },
+  //     false
+  //   );
+  // });
   const loginForm = document.getElementById("loginForm");
   loginForm.addEventListener("submit", requestLogin);
 };

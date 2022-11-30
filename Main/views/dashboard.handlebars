@@ -221,6 +221,7 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+      {{#if (permissionCheck req.session.permission_id) }}
       <div class="row">
         {{!-- <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -322,6 +323,9 @@
           </div>
         </div>
       </div>
+      {{else}}
+      <h2>Welcome {{employee.first_name}} </h2>
+      {{/if}}
     <div class="card mt-3">
     <div class="table-responsive">
     <table class="table align-items-center mb-0">

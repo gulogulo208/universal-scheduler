@@ -64,6 +64,37 @@ const handleCreateProject = async (event) => {
 
 const showEmployeeModal = () => {
   $("#employeeModal").show();
+
+  const inviteEmployee = document.getElementById("inviteEmployee");
+
+  if (inviteEmployee) {
+    inviteEmployee.addEventListener("click", handleInviteEmployee);
+  }
+};
+
+const handleInviteEmployee = async (event) => {
+  try {
+    event.preventDefault();
+
+    const first_name = document.getElementById("first_name");
+    const last_name = document.getElementById("last_name");
+    const email = document.getElementById("email");
+    const position = document.getElementById("position");
+
+    const response = await fetch("/api/employee", {
+      method: "POST",
+      body: JSON.stringify({ first_name, last_name, email, position }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      location.reload();
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 let divisionBtn = document.getElementById("divisionBtn");

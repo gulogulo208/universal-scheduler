@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "first_name": "Tommy",
+      "last_name": "Forkspoon",
+      "email": "Tommy@hotmail.com",
+      "password": "password12345",
+      "permission_id": 1
+    },
+    {
+      "id": 2,
+      "first_name": "Amelia",
+      "last_name": "Knifehandle",
+      "email": "bjorn@gmail.com",
+      "password": "password12345",
+      "permission_id": 2
+    },
+    {
+      "id": 3,
+      "first_name": "Eddie",
+      "last_name": "VanSteeringWheel",
+      "email": "eddie@aol.com",
+      "password": "password12345",
+      "permission_id": 1
+    },
+    {
+      "id": 4,
+      "first_name": "Bob",
+      "last_name": "Cobblestones",
+      "email": "sal@hotmail.com",
+      "password": "password12345",
+      "permission_id": 2
+    },
+    {
+      "id": 5,
+      "first_name": "Jeffrey",
+      "last_name": "Haverfordshire",
+      "email": "jeff@gmail.com",
+      "password": "password12345",
+      "permission_id": 2
+    },
+    {
+      "id": 6,
+      "first_name": "Beth",
+      "last_name": "Squidface",
+      "email": "amiko2k20@aol.com",
+      "password": "password12345",
+      "permission_id": 2
+    }
+  ]
+  

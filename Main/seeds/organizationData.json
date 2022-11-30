@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "BirdsEye",
+        "business_type": "LLC"
+    },
+    {
+        "id": 2,
+        "title": "MegaCorp",
+        "business_type": "Corporation"
+    },
+    {
+        "id": 3,
+        "title": "Treats for Good Dogs",
+        "business_type": "501c3"
+    }
+]

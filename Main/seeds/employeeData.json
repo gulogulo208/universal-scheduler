@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "first_name": "Tommy",
+        "last_name": "Forkspoon",
+        "position": "Engineer",
+        "organization_id": 1,
+        "user_id": 1
+    },
+    {
+        "id": 2,
+        "first_name": "Amelia",
+        "last_name": "Knifehandle",
+        "position": "Lawyer",
+        "organization_id": 1,
+        "user_id": 2
+    },
+    {
+        "id": 3,
+        "first_name": "Eddie",
+        "last_name": "VanSteeringWheel",
+        "position": "Salesman",
+        "organization_id": 1,
+        "user_id": 3
+    },
+    {
+        "id": 4,
+        "first_name": "Bob",
+        "last_name": "Cobblestones",
+        "position": "Accountant",
+        "organization_id": 1,
+        "user_id": 4
+    },
+    {
+        "id": 5,
+        "first_name": "Jeffrey",
+        "last_name": "Haverfordshire",
+        "position": "Human Resources Manager",
+        "organization_id": 1,
+        "user_id": 5
+    },
+    {
+        "id": 6,
+        "first_name": "Beth",
+        "last_name": "Squidface",
+        "position": "Engineer",
+        "organization_id": 1,
+        "user_id": 6
+    }
+]

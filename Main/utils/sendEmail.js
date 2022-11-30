@@ -5,18 +5,16 @@ const nodemailer = require("nodemailer");
 async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    service: "Hotmail",
     auth: {
-      user: "birdseyeinvite@gmail.com",
+      user: "birdseyeinvite@outlook.com",
       pass: "123456birds",
     },
   });
 
   // send mail with defined transport object
   let msg = await transporter.sendMail({
-    from: '"BirdsEye" <birdseyeinvite@gmail.com>', // sender address
+    from: '"BirdsEye Invite" <birdseyeinvite@outlook.com>', // sender address
     to: email, // list of receivers
     subject: "Your BirdsEye Employee Invite", // Subject line
     text: `

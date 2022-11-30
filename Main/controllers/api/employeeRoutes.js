@@ -31,6 +31,8 @@ router.post("/", async (req, res) => {
     const inviteLink = "http://localhost:3001/";
 
     sendInviteEmail(user.first_name, user.email, tempPassword, inviteLink);
+
+    res.send(200);
   } catch (error) {
     res.status(500).json(error);
   }

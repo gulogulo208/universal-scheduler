@@ -76,10 +76,10 @@ const handleInviteEmployee = async (event) => {
   try {
     event.preventDefault();
 
-    const first_name = document.getElementById("first_name");
-    const last_name = document.getElementById("last_name");
-    const email = document.getElementById("email");
-    const position = document.getElementById("position");
+    const first_name = document.getElementById("first_name").value;
+    const last_name = document.getElementById("last_name").value;
+    const email = document.getElementById("email").value.trim();
+    const position = document.getElementById("position").value;
 
     const response = await fetch("/api/employee", {
       method: "POST",

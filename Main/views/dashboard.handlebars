@@ -426,26 +426,28 @@
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">Project: {{@index}}</p>
-                          <h6 class="text-sm mb-0">{{project_name}}</h6>
+                          <h6 class="text-sm mb-0">
+                            <a href="localhost:3001/project/{{id}}">{{project_name}}</a>
+                          </h6>
                         </div>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Employees active:</p>
-                        <h6 class="text-sm mb-0">2500</h6>
+                        <p class="text-xs font-weight-bold mb-0">Division:</p>
+                        <h6 class="text-sm mb-0">{{division.div_name}}</h6>
                       </div>
                     </td>
                     <td>
                       <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Current Date:</p>
-                        <h6 class="text-sm mb-0">1/1/1</h6>
+                        <p class="text-xs font-weight-bold mb-0">Date Created:</p>
+                        <h6 class="text-sm mb-0">{{format_date createdAt}}</h6>
                       </div>
                     </td>
                     <td class="align-middle text-sm">
                       <div class="col text-center">
                         <p class="text-xs font-weight-bold mb-0">Due date:</p>
-                        <h6 class="text-sm mb-0">1/1/1</h6>
+                        <h6 class="text-sm mb-0">{{due_date}}</h6>
                       </div>
                     </td>
                   </tr>
@@ -614,8 +616,8 @@
               </ul>
             </div>
           </div>
-        </div>
-      </div> --}}
+          </div>
+        </div> --}}
       {{!-- Footer --}}
       <footer class="footer pt-3  ">
         <div class="container-fluid">
@@ -769,14 +771,18 @@
             </div>
         </div>
         <div class="col-12">
-          <label for="employeeDataList" class="form-label">Assign Employee(s)</label>
-          <input class="form-control" list="datalistOptions" id="employeeDataList" placeholder="Type to search...">
+            <label for="due_date" class="form-label">Project Due Date</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="due_date" placeholder="1/1/2023" required>
+            </div>
+        </div>
+        <div class="col-12">
+          <label for="employeeDataList" class="form-label">Associated Division</label>
+          <input class="form-control" list="datalistOptions" id="div_id" placeholder="Type to search...">
           <datalist id="datalistOptions">
-            <option value="Employee 1">
-            <option value="Employee 2">
-            <option value="Employee 3">
-            <option value="Employee 4">
-            <option value="Employee 5">
+            {{#each division}}
+            <option value={{id}}>
+            {{/each}}
           </datalist>
         </div>
       <div class="col-12">

@@ -19,6 +19,10 @@ Project.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    due_date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     manager_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -37,12 +41,12 @@ Project.init(
   },
   {
     sequelize,
-    timestamps: false,
+    //timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: "project",
-    createdAt: true,
-    updatedAt: true,
+    //createdAt: true,
+    //updatedAt: true,
   }
 );
 

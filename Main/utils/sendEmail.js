@@ -9,14 +9,14 @@ async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "BirdsEyeInvite@gmail.com",
-      pass: "password",
+      user: "birdseyeinvite@gmail.com",
+      pass: "123456birds",
     },
   });
 
   // send mail with defined transport object
   let msg = await transporter.sendMail({
-    from: '"BirdsEye" <BirdsEyeInvite@gmail.com>', // sender address
+    from: '"BirdsEye" <birdseyeinvite@gmail.com>', // sender address
     to: email, // list of receivers
     subject: "Your BirdsEye Employee Invite", // Subject line
     text: `
@@ -26,7 +26,13 @@ async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
 
     Login here: ${inviteLink}
     `, // plain text body
-    html: "<b>Hello world?</b>", // html body
+    html: `
+    <div>
+    Hi ${first_name}!<br>
+    <br>Your temporary password: ${tempPassword}<br>
+    <br>Login here: ${inviteLink}
+    </div>
+    `, // html body
   });
 
   transporter.sendMail(msg, function (err, info) {

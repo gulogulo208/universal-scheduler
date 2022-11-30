@@ -3,10 +3,10 @@ const Organization = require("./Organization");
 const Division = require("./Division");
 const Project = require("./Project");
 const Employee = require("./Employee");
-const Permissions = require("./Permissions");
+const Permission = require("./Permission");
 const EmployeeAssignments = require("./EmployeeAssignments");
 
-User.hasOne(Permissions, {
+User.hasOne(Permission, {
   foreignKey: "permission_id",
   onDelete: null,
 });
@@ -64,6 +64,6 @@ module.exports = {
   Division,
   Project,
   Employee,
-  Permissions,
+  Permission,
   EmployeeAssignments,
 };

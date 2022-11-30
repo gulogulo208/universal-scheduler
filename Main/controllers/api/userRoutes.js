@@ -1,6 +1,6 @@
 // Imports
 const router = require("express").Router();
-const { User, Employee, Organization, Permissions } = require("../../models");
+const { User, Employee, Organization, Permission } = require("../../models");
 
 // User Routes
 // router.get("/", async (req, res) => {

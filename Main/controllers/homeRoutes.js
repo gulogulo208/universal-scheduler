@@ -3,7 +3,7 @@ const {
   Organization,
   Project,
   Division,
-  Permissions,
+  Permission,
 } = require("../models");
 
 // Imports

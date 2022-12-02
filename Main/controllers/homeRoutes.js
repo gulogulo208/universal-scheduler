@@ -5,6 +5,7 @@ const {
   Division,
   Permission,
   User,
+  EmployeeAssignments,
 } = require("../models");
 
 // Imports
@@ -125,6 +126,62 @@ router.get("/dashboard", async (req, res) => {
       accessLevel,
       logged_in: req.session.logged_in,
     });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.get("/project/:id", async (req, res) => {
+  try {
+    const projectData = await Project.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'project_name',
+        'description',
+        'due_date',
+        'manager_id',
+        'division_id',
+        'createdAt',
+      ],
+      /* include: [
+        {
+          model: EmployeeAssignments,
+        }
+      ], */
+    });
+
+    if (!projectData) {
+      res.status(400).json({ message: "Unable to retrieve project Data" });
+    }
+
+    const project = projectData.get({ plain: true });
+
+    const assignData = await EmployeeAssignments.findAll({
+      where: {
+        project_id: req.params.id,
+      },
+      attributes: [
+        'id',
+        'project_id',
+        'employee_id',
+      ],
+      /* include: [
+        {
+          model: Employee,
+        }
+      ], */
+    });
+
+    const assignments = assignData.map((val) => val.get({ plain: true }));
+
+    res.render("project", {
+      layout: 'panel',
+      project,
+      assignments,
+    })
   } catch (error) {
     res.status(500).json(error);
   }

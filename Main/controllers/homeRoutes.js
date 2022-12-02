@@ -133,6 +133,18 @@ router.get("/dashboard", async (req, res) => {
 
 router.get("/project/:id", async (req, res) => {
   try {
+    if (!req.session.logged_in) {
+      res.redirect("/");
+      return;
+    }
+     //find employee via logged in user data
+     const employeeData = await Employee.findOne({
+      where: { id: req.session.user_id },
+    });
+
+    //serialize employee data
+    const employee = employeeData.get({ plain: true });
+
     const projectData = await Project.findOne({
       where: {
         id: req.params.id
@@ -146,11 +158,11 @@ router.get("/project/:id", async (req, res) => {
         'division_id',
         'createdAt',
       ],
-      /* include: [
+        include: [
         {
-          model: EmployeeAssignments,
+          model: Employee,
         }
-      ], */
+      ], 
     });
 
     if (!projectData) {
@@ -159,14 +171,15 @@ router.get("/project/:id", async (req, res) => {
 
     const project = projectData.get({ plain: true });
 
-    const assignData = await EmployeeAssignments.findAll({
+    console.log("PROJ_DATA", project)
+
+    const employeesData = await Employee.findAll({
       where: {
         project_id: req.params.id,
       },
       attributes: [
         'id',
         'project_id',
-        'employee_id',
       ],
       /* include: [
         {
@@ -175,12 +188,19 @@ router.get("/project/:id", async (req, res) => {
       ], */
     });
 
-    const assignments = assignData.map((val) => val.get({ plain: true }));
+    console.log("employeesData", employeesData)
+
+    const employees = employeesData.map((val) => val.get({ plain: true }));
+
+    //console.log("assignments", assignments)
 
     res.render("project", {
       layout: 'panel',
       project,
-      assignments,
+      //assignments,
+      employee,
+      employees,
+      logged_in: req.session.logged_in,
     })
   } catch (error) {
     res.status(500).json(error);

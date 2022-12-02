@@ -10,5 +10,8 @@ module.exports = {
           const permissionValidated = false;
           return permissionValidated
         }
-      }
+      },
+    parseIndex: val => {
+      return parseInt(val) + 1;
+    }
 }

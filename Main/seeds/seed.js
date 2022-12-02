@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Project, Division, Organization, Permission, Employee  } = require('../models');
+const { User, Project, Division, Organization, Permission, Employee, EmployeeAssignments  } = require('../models');
 
 const userData = require('./userData.json');
 const projectData = require('./projectData.json');
@@ -7,6 +7,7 @@ const permissionData = require('./permissionData.json');
 const divisionData = require('./divisionData.json');
 const organizationData = require('./organizationData.json');
 const employeeData = require('./employeeData.json');
+const empAssignmentData = require('./employeeAssignments.json');
 
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
@@ -35,8 +36,13 @@ const seedDatabase = async () => {
         individualHooks: true,
         returning: true
     });
-
+    
     const projects = await Project.bulkCreate(projectData, {
+        individualHooks: true,
+        returning: true 
+    });
+    
+    const employeeAssignments = await EmployeeAssignments.bulkCreate(empAssignmentData, {
         individualHooks: true,
         returning: true 
     });

@@ -14,6 +14,11 @@ const handleCreateDivision = async (event) => {
 
     const div_name = document.getElementById("div_name").value;
 
+    if (!div_name) {
+      alert("Please enter a division name");
+      return;
+    }
+
     const response = await fetch("/api/division", {
       method: "POST",
       body: JSON.stringify({ div_name }),
@@ -47,6 +52,11 @@ const handleCreateProject = async (event) => {
     const description = document.getElementById("description").value;
     const due_date = document.getElementById("due_date").value;
     const div_id = document.getElementById("div_id").value;
+
+    if (!project_name || !description || !due_date || !div_id) {
+      alert("Please fill out all fields");
+      return;
+    }
 
     const response = await fetch("/api/project", {
       method: "POST",
@@ -82,6 +92,11 @@ const handleInviteEmployee = async (event) => {
     const last_name = document.getElementById("last_name").value;
     const email = document.getElementById("email").value.trim();
     const position = document.getElementById("position").value;
+
+    if (!first_name || !last_name || !email || !position) {
+      alert("Please fill out all fields");
+      return;
+    }
 
     const response = await fetch("/api/employee", {
       method: "POST",

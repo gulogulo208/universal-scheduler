@@ -16,20 +16,26 @@ const seedDatabase = async () => {
         individualHooks: true,
         returning: true
     });
-    
-    const users = await User.bulkCreate(userData, {
-        individualHooks: true,
-        returning: true,
-    });
 
     const organizations = await Organization.bulkCreate(organizationData, {
         individualHooks: true,
         returning: true
     });
     
-    const employees = await Employee.bulkCreate(employeeData, {
+    const users = await User.bulkCreate(userData, {
         individualHooks: true,
-        returning: true 
+        returning: true,
+    });
+
+    users.map(async (user) => {
+        const correspondingEmp = employeeData.filter(employee => employee.user_id === user.id)[0];
+        await Employee.create({
+            first_name: correspondingEmp.first_name,
+            last_name: correspondingEmp.last_name,
+            position: correspondingEmp.position,
+            user_id: correspondingEmp.user_id,
+            organization_id: correspondingEmp.organization_id
+        })
     });
 
     const divisions = await Division.bulkCreate(divisionData, {

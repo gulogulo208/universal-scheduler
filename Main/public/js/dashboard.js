@@ -15,7 +15,7 @@ const handleCreateDivision = async (event) => {
     const div_name = document.getElementById("div_name").value;
 
     if (!div_name) {
-      alert("Please enter a division name");
+      document.getElementById("divisionLabel").classList.add("text-danger");
       return;
     }
 
@@ -53,9 +53,23 @@ const handleCreateProject = async (event) => {
     const due_date = document.getElementById("due_date").value;
     const div_id = document.getElementById("div_id").value;
 
-    if (!project_name || !description || !due_date || !div_id) {
-      alert("Please fill out all fields");
-      return;
+    const projectInfo = [
+      { project_name: project_name },
+      { description: description },
+      { due_date: due_date },
+      { div_id: div_id },
+    ];
+
+    for (let i = 0; i < projectInfo.length; i++) {
+      if (Object.values(projectInfo[i])[0] === "") {
+        document
+          .getElementById(`${Object.keys(projectInfo[i])}_label`)
+          .classList.add("text-danger");
+      } else {
+        document
+          .getElementById(`${Object.keys(projectInfo[i])}_label`)
+          .classList.remove("text-danger");
+      }
     }
 
     const response = await fetch("/api/project", {

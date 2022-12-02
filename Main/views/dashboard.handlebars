@@ -732,7 +732,7 @@
       <div class="modal-body">
         <form class="row g-3" id="divisionForm">
         <div class="col-12">
-            <label for="div_name" class="form-label">Division Name</label>
+            <label for="div_name" class="form-label" id="divisionLabel">Division Name</label>
         <div class="input-group">
             <input type="text" class="form-control" id="div_name" placeholder="Finance" required>
         </div>
@@ -756,25 +756,25 @@
       <div class="modal-body">
         <form class="row g-3" id="projectForm">
         <div class="col-12">
-            <label for="project_name" class="form-label">Project Name</label>
+            <label for="project_name" class="form-label" id="project_name_label">Project Name</label>
             <div class="input-group">
               <input type="text" class="form-control" id="project_name" placeholder="Train Employees" required>
             </div>
         </div>
         <div class="col-12">
-            <label for="description" class="form-label">Project Description</label>
+            <label for="description" class="form-label" id="description_label">Project Description</label>
             <div class="input-group">
               <textarea class="form-control" id="description" placeholder="Onboard employees with new technology" required></textarea>
             </div>
         </div>
         <div class="col-12">
-            <label for="due_date" class="form-label">Project Due Date</label>
+            <label for="due_date" class="form-label" id="due_date_label">Project Due Date</label>
             <div class="input-group">
               <input type="text" class="form-control" id="due_date" placeholder="1/1/2023" required>
             </div>
         </div>
         <div class="col-12">
-          <label for="employeeDataList" class="form-label">Associated Division</label>
+          <label for="employeeDataList" class="form-label" id="div_id_label">Associated Division</label>
           <input class="form-control" list="datalistOptions" id="div_id" placeholder="Type to search...">
           <datalist id="datalistOptions">
             {{#each division}}

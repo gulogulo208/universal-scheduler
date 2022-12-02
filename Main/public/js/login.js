@@ -30,22 +30,10 @@
 const showLoginModal = () => {
   $("#loginModal").show();
 
-  // const inputs = document.querySelectorAll(".needs-validation");
+  if (localStorage.getItem("email")) {
+    document.getElementById("email").value = localStorage.getItem("email");
+  }
 
-  // Array.from(inputs).forEach((form) => {
-  //   form.addEventListener(
-  //     "submit",
-  //     (event) => {
-  //       if (!form.checkValidity()) {
-  //         event.preventDefault();
-  //         event.stopPropagation();
-  //       }
-
-  //       form.classList.add("was-validated");
-  //     },
-  //     false
-  //   );
-  // });
   const loginForm = document.getElementById("loginForm");
   loginForm.addEventListener("submit", requestLogin);
 };
@@ -56,6 +44,16 @@ const requestLogin = async (event) => {
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
+    const rememberMe = document.getElementById("rememberMe").checked;
+
+    if (rememberMe && localStorage.getItem("email")) {
+      localStorage.removeItem("email");
+      localStorage.setItem("email", email);
+    } else if (rememberMe) {
+      localStorage.setItem("email", email);
+    } else if (!rememberMe && localStorage.getItem("email")) {
+      localStorage.removeItem("email");
+    }
 
     if (email && password) {
       const response = await fetch("/api/users/login", {

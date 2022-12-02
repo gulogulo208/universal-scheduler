@@ -36,6 +36,17 @@ const requestSignup = async () => {
 
 const validateInput = (event) => {
   event.preventDefault();
+
+  const password = document.getElementById("signupPassword").value.trim();
+  const reenterPassword = document
+    .getElementById("reenterPassword")
+    .value.trim();
+
+  if (password !== reenterPassword) {
+    alert("Passwords must match");
+    return;
+  }
+
   const inputs = document.querySelectorAll(".needs-validation");
 
   Array.from(inputs).forEach((form) => {

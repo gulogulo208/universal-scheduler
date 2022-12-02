@@ -107,9 +107,23 @@ const handleInviteEmployee = async (event) => {
     const email = document.getElementById("email").value.trim();
     const position = document.getElementById("position").value;
 
-    if (!first_name || !last_name || !email || !position) {
-      alert("Please fill out all fields");
-      return;
+    const employeeInfo = [
+      { first_name: first_name },
+      { last_name: last_name },
+      { email: email },
+      { position: position },
+    ];
+
+    for (let i = 0; i < employeeInfo.length; i++) {
+      if (Object.values(employeeInfo[i])[0] === "") {
+        document
+          .getElementById(`${Object.keys(employeeInfo[i])}_label`)
+          .classList.add("text-danger");
+      } else {
+        document
+          .getElementById(`${Object.keys(employeeInfo[i])}_label`)
+          .classList.remove("text-danger");
+      }
     }
 
     const response = await fetch("/api/employee", {

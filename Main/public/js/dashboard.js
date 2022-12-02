@@ -161,6 +161,23 @@ const handleChangePassword = async (event) => {
       .getElementById("reenter_password")
       .value.trim();
 
+    const settingsInfo = [
+      { new_password: new_password },
+      { reenter_password: reenter_password },
+    ];
+
+    for (let i = 0; i < settingsInfo.length; i++) {
+      if (Object.values(settingsInfo[i])[0] === "") {
+        document
+          .getElementById(`${Object.keys(settingsInfo[i])}_label`)
+          .classList.add("text-danger");
+      } else {
+        document
+          .getElementById(`${Object.keys(settingsInfo[i])}_label`)
+          .classList.remove("text-danger");
+      }
+    }
+
     if (new_password !== reenter_password) {
       alert("Passwords must match!");
       return;

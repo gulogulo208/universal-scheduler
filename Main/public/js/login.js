@@ -66,6 +66,9 @@ const requestLogin = async (event) => {
 
       if (response.ok) {
         document.location.replace("/dashboard");
+        return;
+      } else {
+        alert("Incorrect email or password");
       }
     }
   } catch (error) {

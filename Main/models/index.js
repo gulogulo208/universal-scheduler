@@ -58,6 +58,10 @@ Project.belongsTo(Division, {
   foreignKey: "division_id",
 });
 
+Employee.hasOne(Project, {
+  foreignKey: "project_id",
+});
+
 module.exports = {
   User,
   Organization,

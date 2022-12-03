@@ -96,6 +96,7 @@ router.get("/dashboard", async (req, res) => {
           'due_date',
           'createdAt'
         ],
+        order: [['createdAt', 'ASC']],
         include: [
           {
             model: Division,
@@ -109,7 +110,7 @@ router.get("/dashboard", async (req, res) => {
       scratch.push(temp);
     }
 
-    for (let i = 0; i < scratch.length; i++) {
+    for (let i = 0; i < 5; i++) {
       for (let j = 0; j < scratch[i].length; j++) {
         project.push(scratch[i][j]);
       }
@@ -298,6 +299,7 @@ router.get('/projects', async (req, res) => {
     res.render("projects", {
       layout: "panel",
       organization,
+      user,
       employee,
       division,
       project,

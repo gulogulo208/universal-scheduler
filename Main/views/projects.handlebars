@@ -8,7 +8,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="/dashboard">Home</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Projects</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">{{employee.first_name}}'s Dashboard | {{organization.title}}</h6>
+          <h6 class="font-weight-bolder text-white mb-0">{{user.first_name}}'s Dashboard | {{organization.title}}</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -261,11 +261,11 @@
                     <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
-                          <div>
+                          {{!-- <div>
                             {{parseIndex @index}}
-                          </div>
+                          </div> --}}
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{project_name}}</h6>
+                            <h6 class="mb-0 text-sm">{{parseIndex @index}}-{{project_name}}</h6>
                             <p class="text-xs text-secondary mb-0">{{description}}</p>
                           </div>
                         </div>

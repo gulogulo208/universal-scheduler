@@ -22,4 +22,14 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/projects", async (req, res) => {
+  try {
+    // const projectData = await Project.findAll({
+    //   where: {id: req.}
+    // })
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
 module.exports = router;

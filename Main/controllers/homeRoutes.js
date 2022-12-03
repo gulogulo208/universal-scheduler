@@ -216,12 +216,12 @@ router.get('/projects', async (req, res) => {
     console.log('top of dashboard')
 
     //find employee via logged in user data
-    const employeeData = await Employee.findOne({
-      where: { id: req.session.user_id },
+    const employeeData = await Employee.findAll({
+      where: { organization_id: req.session.org_id },
     });
     
     //serialize employee data
-    const employee = employeeData.get({ plain: true });
+    const employee = employeeData.map((emp) => emp.get({ plain: true }));
     console.log("EMP_DATA", employee);
 
     // find the sessions user
@@ -247,7 +247,7 @@ router.get('/projects', async (req, res) => {
     console.log("accessLevel", accessLevel)
 
     const orgData = await Organization.findOne({
-      where: { id: employeeData.organization_id },
+      where: { id: req.session.org_id },
     });
     const organization = orgData.get({ plain: true });
     console.log("ORG_DATA", organization);

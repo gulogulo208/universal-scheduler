@@ -7,33 +7,33 @@ const Permission = require("./Permission");
 const EmployeeAssignments = require("./EmployeeAssignments");
 
 User.hasOne(Permission, {
-  foreignKey: "permission_id",
-  onDelete: null,
+	foreignKey: 'permission_id',
+	onDelete: null,
 });
 
 Employee.belongsTo(User, {
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
+	foreignKey: 'user_id',
+	onDelete: 'CASCADE',
 });
 
-// Employee.belongsTo(Project, {
-//   foreignKey: "manager_id",
-// });
+Employee.belongsTo(Project, {
+	foreignKey: 'manager_id',
+});
 
 Project.hasOne(Employee, {
-  foreignKey: "manager_id",
+	foreignKey: 'manager_id',
 });
 
 Employee.belongsToMany(Project, {
-  through: EmployeeAssignments,
-  foreignKey: "project_id",
-  onDelete: null,
+	through: EmployeeAssignments,
+	foreignKey: 'employee_id',
+	onDelete: null,
 });
 
 Project.belongsToMany(Employee, {
-  through: EmployeeAssignments,
-  foreignKey: "employee_id",
-  onDelete: null,
+	through: EmployeeAssignments,
+	foreignKey: 'project_id',
+	onDelete: null,
 });
 
 // Employee.hasOne(Project, {
@@ -42,8 +42,8 @@ Project.belongsToMany(Employee, {
 // });
 
 Employee.hasOne(Organization, {
-  foreignKey: "organization_id",
-  onDelete: null,
+	foreignKey: 'organization_id',
+	onDelete: null,
 });
 
 // Organization has many Divisions
@@ -51,11 +51,11 @@ Organization.hasMany(Division);
 
 // Division belongs to Organization
 Division.belongsTo(Organization, {
-  foreignKey: "organization_id",
+	foreignKey: 'organization_id',
 });
 
 Project.belongsTo(Division, {
-  foreignKey: "division_id",
+	foreignKey: 'division_id',
 });
 
 Employee.hasOne(Project, {
@@ -63,11 +63,11 @@ Employee.hasOne(Project, {
 });
 
 module.exports = {
-  User,
-  Organization,
-  Division,
-  Project,
-  Employee,
-  Permission,
-  EmployeeAssignments,
+	User,
+	Organization,
+	Division,
+	Project,
+	Employee,
+	Permission,
+	EmployeeAssignments,
 };

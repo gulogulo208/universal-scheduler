@@ -1,7 +1,7 @@
 [
     {
       "project_name": "Millenium Falcon",
-      "description": "A spaceship that can make the Kessel run in 12 parsecs..",
+      "description": "A spaceship that can make the Kessel run in 12 parsecs.",
       "due_date": "1/31/2023",
       "manager_id": 1,
       "division_id": 1

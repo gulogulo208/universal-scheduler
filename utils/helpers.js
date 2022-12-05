@@ -6,10 +6,10 @@ module.exports = {
   },
   permissionCheck: function (value) {
     if (value === 1) {
-      const permissionValidated = false;
+      const permissionValidated = true;
       return permissionValidated;
     } else {
-      const permissionValidated = true;
+      const permissionValidated = false;
       return permissionValidated;
     }
   },

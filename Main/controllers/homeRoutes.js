@@ -123,7 +123,7 @@ router.get("/dashboard", async (req, res) => {
       organization,
       employee,
       division,
-      project,
+      //project,
       accessLevel,
       logged_in: req.session.logged_in,
     });

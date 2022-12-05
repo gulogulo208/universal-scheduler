@@ -1,3 +1,5 @@
+//const { response } = require("express");
+
 const showDivisionModal = () => {
   $("#divisionModal").show();
 
@@ -142,62 +144,62 @@ const handleInviteEmployee = async (event) => {
   }
 };
 
-// const showSettingsModal = () => {
-//   $("#settingsModal").show();
+/*  const showSettingsModal = () => {
+   $("#settingsModal").show();
 
-//   const changePassword = document.getElementById("changePassword");
+   const changePassword = document.getElementById("changePassword");
 
-//   if (changePassword) {
-//     changePassword.addEventListener("click", handleChangePassword);
-//   }
-// };
+   if (changePassword) {
+     changePassword.addEventListener("click", handleChangePassword);
+   }
+ }; */
 
-// const handleChangePassword = async (event) => {
-//   try {
-//     event.preventDefault();
+ const handleChangePassword = async (event) => {
+   try {
+     event.preventDefault();
 
-//     const new_password = document.getElementById("new_password").value.trim();
-//     const reenter_password = document
-//       .getElementById("reenter_password")
-//       .value.trim();
+     const new_password = document.getElementById("new_password").value.trim();
+     const reenter_password = document
+       .getElementById("reenter_password")
+       .value.trim();
 
-//     const settingsInfo = [
-//       { new_password: new_password },
-//       { reenter_password: reenter_password },
-//     ];
+     const settingsInfo = [
+       { new_password: new_password },
+       { reenter_password: reenter_password },
+     ];
 
-//     for (let i = 0; i < settingsInfo.length; i++) {
-//       if (Object.values(settingsInfo[i])[0] === "") {
-//         document
-//           .getElementById(`${Object.keys(settingsInfo[i])}_label`)
-//           .classList.add("text-danger");
-//       } else {
-//         document
-//           .getElementById(`${Object.keys(settingsInfo[i])}_label`)
-//           .classList.remove("text-danger");
-//       }
-//     }
+     for (let i = 0; i < settingsInfo.length; i++) {
+       if (Object.values(settingsInfo[i])[0] === "") {
+         document
+           .getElementById(`${Object.keys(settingsInfo[i])}_label`)
+           .classList.add("text-danger");
+       } else {
+         document
+           .getElementById(`${Object.keys(settingsInfo[i])}_label`)
+           .classList.remove("text-danger");
+       }
+     }
 
-//     if (new_password !== reenter_password) {
-//       alert("Passwords must match!");
-//       return;
-//     }
+     if (new_password !== reenter_password) {
+       alert("Passwords must match!");
+       return;
+     }
 
-//     const response = await fetch("/api/users/changePassword", {
-//       method: "PUT",
-//       body: JSON.stringify({ new_password }),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
+     const response = await fetch("/api/users/changePassword", {
+       method: "PUT",
+       body: JSON.stringify({ new_password }),
+       headers: {
+         "Content-Type": "application/json",
+       },
+     });
 
-//     if (response.ok) {
-//       location.reload();
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+     if (response.ok) {
+       location.reload();
+     }
+   } catch (error) {
+     console.error(error);
+   }
+ };
 
 const handleUpdateProfile = async (event) => {
   try {
@@ -230,6 +232,42 @@ const handleUpdateProfile = async (event) => {
     console.error(error);
   }
 };
+
+const showAddModal = async () => {
+  $("#addModal").show();
+
+  const addEmployee = document.getElementById("addEmployee");
+
+  if (addEmployee) {
+    addEmployee.addEventListener("click", handleAssignEmployee);
+  }
+}
+
+const handleAssignEmployee = async (event) => {
+  try {
+    event.preventDefault();
+
+    const employee_id = document.getElementById("employee_id").value;
+    const project_id = document.getElementById("project_id").value;
+
+    const response = await fetch("/api/employee/assign", {
+      method: "PUT",
+      body: JSON.stringify({ project_id, employee_id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("EMPLOYEE_ID", employee_id);
+    console.log("PROJECT_ID", project_id);
+
+    if (response.ok) {
+      location.reload();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 /* const handleUpdateEmail = async (event) => {
   try {
@@ -272,6 +310,11 @@ function showPassword() {
   }
 }
 
+/* let addEmployeeBtn = document.getElementById("addEmployee");
+if (addEmployeeBtn) {
+  addEmployeeBtn.addEventListener("click", handleAssignEmployee);
+} */
+
 let saveBtn = document.getElementById("saveBtn");
 if (saveBtn) {
   saveBtn.addEventListener("click", handleUpdateProfile);
@@ -300,4 +343,9 @@ if (employeeBtn) {
 let settingsBtn = document.getElementById("settingsBtn");
 if (settingsBtn) {
   settingsBtn.addEventListener("click", showSettingsModal);
+}
+
+let addBtn = document.getElementById("addBtn");
+if (addBtn) {
+  addBtn.addEventListener("click", showAddModal);
 }

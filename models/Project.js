@@ -23,13 +23,13 @@ Project.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    manager_id: {
+    /* manager_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "employee",
         key: "id",
       },
-    },
+    }, */
     division_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

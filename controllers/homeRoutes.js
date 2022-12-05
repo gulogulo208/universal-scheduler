@@ -307,13 +307,13 @@ router.get("/team", async (req, res) => {
     }
     console.log("top of dashboard");
 
-    //find employee via logged in user data
+    /* //find employee via logged in user data
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
     //serialize employee data
     const employee = employeeData.get({ plain: true });
-    console.log("EMP_DATA", employee);
+    console.log("EMP_DATA", employee); */
 
     // find the sessions user
     const userData = await User.findOne({
@@ -337,7 +337,7 @@ router.get("/team", async (req, res) => {
     console.log("accessLevel", accessLevel);
 
     const orgData = await Organization.findOne({
-      where: { id: employeeData.organization_id },
+      where: { id: req.session.org_id },
     });
     const organization = orgData.get({ plain: true });
     console.log("ORG_DATA", organization);
@@ -347,8 +347,6 @@ router.get("/team", async (req, res) => {
     });
     const division = divData.map((val) => val.get({ plain: true }));
     console.log("DIV_DATA", division);
-
-    console.log("DIVISION", division[0]);
 
     const scratch = [];
     const project = [];
@@ -385,11 +383,18 @@ router.get("/team", async (req, res) => {
     console.log("PROJ_DATA", project);
 
     const staff = await Employee.findAll({
-      where: {organization_id: req.session.org_id}, 
+      where: { organization_id: req.session.org_id }, 
       include: [
-        {
-          model: User, Project, Division, EmployeeAssignments
-        }
+        { 
+          model: User
+         }, 
+        { 
+          model: Project,
+          include: [{
+            model: Division,
+            attributes: ['div_name']
+          }]
+         }
       ]
     });
 
@@ -397,12 +402,12 @@ router.get("/team", async (req, res) => {
 
     const myStaff = staff.map((val) => val.get({plain: true}))
 
-    console.log("myStaff", myStaff)
+    console.log("myStaff", myStaff);
 
     res.render("team", {
       layout: "panel",
       organization,
-      employee,
+      //employee,
       division,
       project,
       accessLevel,

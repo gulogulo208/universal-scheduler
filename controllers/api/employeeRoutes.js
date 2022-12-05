@@ -59,4 +59,25 @@ router.put("/edit", async (req, res) => {
   }
 });
 
+router.put("/assign", async (req, res) => {
+  try {
+    const updateEmp = await Employee.update(
+      {
+        project_id: req.body.project_id,
+      },
+      {
+        where: { id: req.body.employee_id },
+      }
+    );
+
+    if (!updateEmp) {
+      res.status(400).json({ message: "Unable to update employee project_id" })
+    }
+
+    res.status(200).end();
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
 module.exports = router;

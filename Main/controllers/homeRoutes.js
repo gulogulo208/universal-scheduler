@@ -110,7 +110,7 @@ router.get("/dashboard", async (req, res) => {
       scratch.push(temp);
     }
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < scratch.length; i++) {
       for (let j = 0; j < scratch[i].length; j++) {
         project.push(scratch[i][j]);
       }
@@ -123,7 +123,7 @@ router.get("/dashboard", async (req, res) => {
       organization,
       employee,
       division,
-      project,
+      //project,
       accessLevel,
       logged_in: req.session.logged_in,
     });

@@ -5,7 +5,7 @@ module.exports = {
     ).getDate()}/${new Date(date).getFullYear()}`;
   },
   permissionCheck: function (value) {
-    if (value <= 1) {
+    if (value === 1) {
       const permissionValidated = true;
       return permissionValidated;
     } else {

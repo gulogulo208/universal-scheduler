@@ -142,62 +142,62 @@ const handleInviteEmployee = async (event) => {
   }
 };
 
-const showSettingsModal = () => {
-  $("#settingsModal").show();
+// const showSettingsModal = () => {
+//   $("#settingsModal").show();
 
-  const changePassword = document.getElementById("changePassword");
+//   const changePassword = document.getElementById("changePassword");
 
-  if (changePassword) {
-    changePassword.addEventListener("click", handleChangePassword);
-  }
-};
+//   if (changePassword) {
+//     changePassword.addEventListener("click", handleChangePassword);
+//   }
+// };
 
-const handleChangePassword = async (event) => {
-  try {
-    event.preventDefault();
+// const handleChangePassword = async (event) => {
+//   try {
+//     event.preventDefault();
 
-    const new_password = document.getElementById("new_password").value.trim();
-    const reenter_password = document
-      .getElementById("reenter_password")
-      .value.trim();
+//     const new_password = document.getElementById("new_password").value.trim();
+//     const reenter_password = document
+//       .getElementById("reenter_password")
+//       .value.trim();
 
-    const settingsInfo = [
-      { new_password: new_password },
-      { reenter_password: reenter_password },
-    ];
+//     const settingsInfo = [
+//       { new_password: new_password },
+//       { reenter_password: reenter_password },
+//     ];
 
-    for (let i = 0; i < settingsInfo.length; i++) {
-      if (Object.values(settingsInfo[i])[0] === "") {
-        document
-          .getElementById(`${Object.keys(settingsInfo[i])}_label`)
-          .classList.add("text-danger");
-      } else {
-        document
-          .getElementById(`${Object.keys(settingsInfo[i])}_label`)
-          .classList.remove("text-danger");
-      }
-    }
+//     for (let i = 0; i < settingsInfo.length; i++) {
+//       if (Object.values(settingsInfo[i])[0] === "") {
+//         document
+//           .getElementById(`${Object.keys(settingsInfo[i])}_label`)
+//           .classList.add("text-danger");
+//       } else {
+//         document
+//           .getElementById(`${Object.keys(settingsInfo[i])}_label`)
+//           .classList.remove("text-danger");
+//       }
+//     }
 
-    if (new_password !== reenter_password) {
-      alert("Passwords must match!");
-      return;
-    }
+//     if (new_password !== reenter_password) {
+//       alert("Passwords must match!");
+//       return;
+//     }
 
-    const response = await fetch("/api/users/changePassword", {
-      method: "PUT",
-      body: JSON.stringify({ new_password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+//     const response = await fetch("/api/users/changePassword", {
+//       method: "PUT",
+//       body: JSON.stringify({ new_password }),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
 
-    if (response.ok) {
-      location.reload();
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
+//     if (response.ok) {
+//       location.reload();
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 const handleUpdateProfile = async (event) => {
   try {
@@ -212,25 +212,24 @@ const handleUpdateProfile = async (event) => {
       body: JSON.stringify({ first_name, last_name }),
       headers: {
         "Content-Type": "application/json",
-      }
-    })
+      },
+    });
 
     const response2 = await fetch("/api/users/updateEmail", {
       method: "PUT",
       body: JSON.stringify({ email }),
       headers: {
         "Content-Type": "application/json",
-      }
-    })
+      },
+    });
 
     if (response.ok && response2.ok) {
       location.reload();
     }
-
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 /* const handleUpdateEmail = async (event) => {
   try {
@@ -273,7 +272,7 @@ function showPassword() {
   }
 }
 
-let saveBtn = document.getElementById("saveBtn")
+let saveBtn = document.getElementById("saveBtn");
 if (saveBtn) {
   saveBtn.addEventListener("click", handleUpdateProfile);
 }

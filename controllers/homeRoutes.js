@@ -72,6 +72,7 @@ router.get("/dashboard", async (req, res) => {
 
     const divData = await Division.findAll({
       where: { organization_id: organization.id },
+      order: [['id', 'ASC']],
       include: [
         {
           model: Project,
@@ -97,7 +98,7 @@ router.get("/dashboard", async (req, res) => {
           "due_date",
           "createdAt",
         ],
-        order: [["createdAt", "ASC"]],
+        order: [["createdAt", "DESC"]],
         include: [
           {
             model: Division,

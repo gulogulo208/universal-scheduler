@@ -96,6 +96,7 @@ router.get("/dashboard", async (req, res) => {
           'due_date',
           'createdAt'
         ],
+        order: [['createdAt', 'ASC']],
         include: [
           {
             model: Division,
@@ -109,7 +110,7 @@ router.get("/dashboard", async (req, res) => {
       scratch.push(temp);
     }
 
-    for (let i = 0; i < scratch.length; i++) {
+    for (let i = 0; i < 5; i++) {
       for (let j = 0; j < scratch[i].length; j++) {
         project.push(scratch[i][j]);
       }
@@ -216,12 +217,12 @@ router.get('/projects', async (req, res) => {
     console.log('top of dashboard')
 
     //find employee via logged in user data
-    const employeeData = await Employee.findOne({
-      where: { id: req.session.user_id },
+    const employeeData = await Employee.findAll({
+      where: { organization_id: req.session.org_id },
     });
     
     //serialize employee data
-    const employee = employeeData.get({ plain: true });
+    const employee = employeeData.map((emp) => emp.get({ plain: true }));
     console.log("EMP_DATA", employee);
 
     // find the sessions user
@@ -247,7 +248,7 @@ router.get('/projects', async (req, res) => {
     console.log("accessLevel", accessLevel)
 
     const orgData = await Organization.findOne({
-      where: { id: employeeData.organization_id },
+      where: { id: req.session.org_id },
     });
     const organization = orgData.get({ plain: true });
     console.log("ORG_DATA", organization);
@@ -298,6 +299,7 @@ router.get('/projects', async (req, res) => {
     res.render("projects", {
       layout: "panel",
       organization,
+      user,
       employee,
       division,
       project,

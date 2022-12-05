@@ -27,8 +27,8 @@
 //   }
 // };
 
-const showLoginModal = () => {
-  $("#loginModal").show();
+/* const showLoginModal = () => {
+  //$("#loginModal").show();
 
   if (localStorage.getItem("email")) {
     document.getElementById("email").value = localStorage.getItem("email");
@@ -36,11 +36,15 @@ const showLoginModal = () => {
 
   const loginForm = document.getElementById("loginForm");
   loginForm.addEventListener("submit", requestLogin);
-};
+}; */
 
 const requestLogin = async (event) => {
   try {
     event.preventDefault();
+
+    if (localStorage.getItem("email")) {
+      document.getElementById("email").value = localStorage.getItem("email");
+    }    
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
@@ -76,7 +80,10 @@ const requestLogin = async (event) => {
   }
 };
 
-let loginBtn = document.getElementById("loginBtn");
+const loginForm = document.getElementById("loginForm");
+loginForm.addEventListener("submit", requestLogin);
+
+/* let loginBtn = document.getElementById("loginBtn");
 if (loginBtn) {
   document.querySelector("#loginBtn").addEventListener("click", showLoginModal);
-}
+} */

@@ -320,7 +320,9 @@
           <div class="card ">
             <div class="card-header pb-0 p-3">
               <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Ongoing Projects</h6>
+                <h6 class="mb-2">Recent Projects |
+                  <a href="/projects">See All Projects</a>
+                </h6>
               </div>
             </div>
             <div class="table-responsive">
@@ -331,9 +333,9 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Project: {{@index}}</p>
+                          <p class="text-xs font-weight-bold mb-0">Project: {{parseIndex @index}}</p>
                           <h6 class="text-sm mb-0">
-                            <a href="/project/{{id}}">{{project_name}}</a>
+                            {{project_name}}
                           </h6>
                         </div>
                       </div>

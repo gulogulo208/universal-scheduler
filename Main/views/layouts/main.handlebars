@@ -22,7 +22,7 @@
   <link id="pagestyle" href="../../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg border-bottom border-dark">
+    {{!-- <nav class="navbar navbar-expand-lg border-bottom border-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">Universal Manager</a>
         <div class="justify-content-end">
@@ -30,12 +30,12 @@
             <button type="button" class="btn btn-outline-danger" id="logoutBtn">Logout</button>
           {{else}}
             <button type="button" class="btn btn-primary" id="loginBtn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-            {{/if}}
+          {{/if}}
         </div>
       </div>
-    </nav>
+    </nav> --}}
     {{!-- Login Modal --}}
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+{{!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
           <div class="modal-body p-0">
@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
     {{{body}}}
 {{!-- Custom JS --}}
 {{#if logged_in}}

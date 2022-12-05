@@ -28,12 +28,7 @@ router.post("/", async (req, res) => {
 
     const inviteLink = "http://localhost:3001/";
 
-    sendInviteEmail(
-      employee.first_name,
-      employee.email,
-      tempPassword,
-      inviteLink
-    );
+    sendInviteEmail(employee.first_name, user.email, tempPassword, inviteLink);
 
     res.send(200);
   } catch (error) {
@@ -43,13 +38,15 @@ router.post("/", async (req, res) => {
 
 router.put("/edit", async (req, res) => {
   try {
-    const updateEmp = await Employee.update({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name
-    }, 
-    {
-      where: { id: req.session.user_id}
-    })
+    const updateEmp = await Employee.update(
+      {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+      },
+      {
+        where: { id: req.session.user_id },
+      }
+    );
 
     if (!updateEmp) {
       res.status(400).json({ message: "Couldn't update user information" });
@@ -60,6 +57,6 @@ router.put("/edit", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 
 module.exports = router;

@@ -199,6 +199,90 @@ const handleChangePassword = async (event) => {
   }
 };
 
+const handleUpdateProfile = async (event) => {
+  try {
+    event.preventDefault();
+
+    const first_name = document.getElementById("first_name").value;
+    const last_name = document.getElementById("last_name").value;
+    const email = document.getElementById("user_email").value.trim();
+
+    const response = await fetch("/api/employee/edit", {
+      method: "PUT",
+      body: JSON.stringify({ first_name, last_name }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+
+    const response2 = await fetch("/api/users/updateEmail", {
+      method: "PUT",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+
+    if (response.ok && response2.ok) {
+      location.reload();
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/* const handleUpdateEmail = async (event) => {
+  try {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+
+    const response = await fetch("/api/users/updateEmail", {
+      method: "PUT",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+
+    if (response.ok) {
+      location.reload();
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+} */
+
+function showNewPassword() {
+  var x = document.getElementById("new_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function showPassword() {
+  var x = document.getElementById("reenter_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+let saveBtn = document.getElementById("saveBtn")
+if (saveBtn) {
+  saveBtn.addEventListener("click", handleUpdateProfile);
+}
+
+let changePasswordBtn = document.getElementById("changePasswordBtn");
+if (changePasswordBtn) {
+  changePasswordBtn.addEventListener("click", handleChangePassword);
+}
+
 let divisionBtn = document.getElementById("divisionBtn");
 if (divisionBtn) {
   divisionBtn.addEventListener("click", showDivisionModal);

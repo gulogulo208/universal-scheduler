@@ -160,6 +160,28 @@ router.put("/changePassword", async (req, res) => {
   }
 });
 
+router.put("/updateEmail", async (req, res) => {
+  try {
+    const updateUser = await User.update(
+      {
+      email: req.body.email,
+      },
+      {
+        where: { id: req.session.user_id },
+      }
+    );
+
+    if (!updateUser) {
+      res.status(400).json({ message: "Couldn't update email" });
+    }
+
+    res.status(200).end();
+
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
 // router.put("/:id", async (req, res) => {
 //   try {
 //     const userData = await User.update(req.body, {

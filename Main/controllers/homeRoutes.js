@@ -123,7 +123,7 @@ router.get("/dashboard", async (req, res) => {
       organization,
       employee,
       division,
-      //project,
+      project,
       accessLevel,
       logged_in: req.session.logged_in,
     });
@@ -522,6 +522,7 @@ router.get('/profile', async (req, res) => {
       layout: "panel",
       organization,
       employee,
+      user,
       division,
       project,
       accessLevel,

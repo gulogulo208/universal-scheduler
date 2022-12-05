@@ -9,8 +9,6 @@ router.post("/", async (req, res) => {
     const tempPassword = uuidv4();
 
     const userData = await User.create({
-      // first_name: req.body.first_name,
-      // last_name: req.body.last_name,
       email: req.body.email,
       password: tempPassword,
       permission_id: 2,

@@ -20,10 +20,6 @@ router.get("/", (req, res) => {
   }
 });
 
-// router.get("/login", (req, res) => {
-//   res.render("login", { logged_in: req.session.logged_in });
-// });
-
 router.get("/signup", (req, res) => {
   res.render("signup", { logged_in: req.session.logged_in });
   return;
@@ -35,38 +31,37 @@ router.get("/dashboard", async (req, res) => {
       res.redirect("/");
       return;
     }
-    console.log('top of dashboard')
+    console.log("top of dashboard");
 
     //find employee via logged in user data
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
-    
+
     //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
     // find the sessions user
     const userData = await User.findOne({
-      where: {id: req.session.user_id}
+      where: { id: req.session.user_id },
     });
 
     //serialize userData
     const user = userData.get({ plain: true });
 
-
     // find permissions of current user
     const userPermission = await Permission.findOne({
-      where: { id: user.permission_id}
-    })
+      where: { id: user.permission_id },
+    });
 
-    console.log("userPermission", userPermission)
+    console.log("userPermission", userPermission);
 
     //serialize permission data
     const permission = userPermission.get({ plain: true });
-    console.log('permission', permission)
-    const accessLevel = permission.access_level
-    console.log("accessLevel", accessLevel)
+    console.log("permission", permission);
+    const accessLevel = permission.access_level;
+    console.log("accessLevel", accessLevel);
 
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
@@ -89,24 +84,23 @@ router.get("/dashboard", async (req, res) => {
       const tempProjectData = await Project.findAll({
         where: { division_id: division[i].id },
         attributes: [
-          'id',
-          'project_name',
-          'description',
-          'division_id',
-          'due_date',
-          'createdAt'
+          "id",
+          "project_name",
+          "description",
+          "division_id",
+          "due_date",
+          "createdAt",
         ],
-        order: [['createdAt', 'ASC']],
+        order: [["createdAt", "ASC"]],
         include: [
           {
             model: Division,
-          }
-        ]
+          },
+        ],
       });
 
       const temp = tempProjectData.map((val) => val.get({ plain: true }));
 
-      //console.log("TEMP_PROJ", temp);
       scratch.push(temp);
     }
 
@@ -138,8 +132,8 @@ router.get("/project/:id", async (req, res) => {
       res.redirect("/");
       return;
     }
-     //find employee via logged in user data
-     const employeeData = await Employee.findOne({
+    //find employee via logged in user data
+    const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
 
@@ -148,22 +142,22 @@ router.get("/project/:id", async (req, res) => {
 
     const projectData = await Project.findOne({
       where: {
-        id: req.params.id
+        id: req.params.id,
       },
       attributes: [
-        'id',
-        'project_name',
-        'description',
-        'due_date',
-        'manager_id',
-        'division_id',
-        'createdAt',
+        "id",
+        "project_name",
+        "description",
+        "due_date",
+        "manager_id",
+        "division_id",
+        "createdAt",
       ],
-        include: [
+      include: [
         {
           model: Employee,
-        }
-      ], 
+        },
+      ],
     });
 
     if (!projectData) {
@@ -172,16 +166,13 @@ router.get("/project/:id", async (req, res) => {
 
     const project = projectData.get({ plain: true });
 
-    console.log("PROJ_DATA", project)
+    console.log("PROJ_DATA", project);
 
     const employeesData = await Employee.findAll({
       where: {
         project_id: req.params.id,
       },
-      attributes: [
-        'id',
-        'project_id',
-      ],
+      attributes: ["id", "project_id"],
       /* include: [
         {
           model: Employee,
@@ -189,63 +180,60 @@ router.get("/project/:id", async (req, res) => {
       ], */
     });
 
-    console.log("employeesData", employeesData)
+    console.log("employeesData", employeesData);
 
     const employees = employeesData.map((val) => val.get({ plain: true }));
 
-    //console.log("assignments", assignments)
-
     res.render("project", {
-      layout: 'panel',
+      layout: "panel",
       project,
       //assignments,
       employee,
       employees,
       logged_in: req.session.logged_in,
-    })
+    });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-router.get('/projects', async (req, res) => {
+router.get("/projects", async (req, res) => {
   try {
     if (!req.session.logged_in) {
       res.redirect("/");
       return;
     }
-    console.log('top of dashboard')
+    console.log("top of dashboard");
 
     //find employee via logged in user data
     const employeeData = await Employee.findAll({
       where: { organization_id: req.session.org_id },
     });
-    
+
     //serialize employee data
     const employee = employeeData.map((emp) => emp.get({ plain: true }));
     console.log("EMP_DATA", employee);
 
     // find the sessions user
     const userData = await User.findOne({
-      where: {id: req.session.user_id}
+      where: { id: req.session.user_id },
     });
 
     //serialize userData
     const user = userData.get({ plain: true });
 
-
     // find permissions of current user
     const userPermission = await Permission.findOne({
-      where: { id: user.permission_id}
-    })
+      where: { id: user.permission_id },
+    });
 
-    console.log("userPermission", userPermission)
+    console.log("userPermission", userPermission);
 
     //serialize permission data
     const permission = userPermission.get({ plain: true });
-    console.log('permission', permission)
-    const accessLevel = permission.access_level
-    console.log("accessLevel", accessLevel)
+    console.log("permission", permission);
+    const accessLevel = permission.access_level;
+    console.log("accessLevel", accessLevel);
 
     const orgData = await Organization.findOne({
       where: { id: req.session.org_id },
@@ -268,23 +256,22 @@ router.get('/projects', async (req, res) => {
       const tempProjectData = await Project.findAll({
         where: { division_id: division[i].id },
         attributes: [
-          'id',
-          'project_name',
-          'description',
-          'division_id',
-          'due_date',
-          'createdAt'
+          "id",
+          "project_name",
+          "description",
+          "division_id",
+          "due_date",
+          "createdAt",
         ],
         include: [
           {
             model: Division,
-          }
-        ]
+          },
+        ],
       });
 
       const temp = tempProjectData.map((val) => val.get({ plain: true }));
 
-      //console.log("TEMP_PROJ", temp);
       scratch.push(temp);
     }
 
@@ -311,44 +298,43 @@ router.get('/projects', async (req, res) => {
   }
 });
 
-router.get('/team', async (req, res) => {
+router.get("/team", async (req, res) => {
   try {
     if (!req.session.logged_in) {
       res.redirect("/");
       return;
     }
-    console.log('top of dashboard')
+    console.log("top of dashboard");
 
     //find employee via logged in user data
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
-    
+
     //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
     // find the sessions user
     const userData = await User.findOne({
-      where: {id: req.session.user_id}
+      where: { id: req.session.user_id },
     });
 
     //serialize userData
     const user = userData.get({ plain: true });
 
-
     // find permissions of current user
     const userPermission = await Permission.findOne({
-      where: { id: user.permission_id}
-    })
+      where: { id: user.permission_id },
+    });
 
-    console.log("userPermission", userPermission)
+    console.log("userPermission", userPermission);
 
     //serialize permission data
     const permission = userPermission.get({ plain: true });
-    console.log('permission', permission)
-    const accessLevel = permission.access_level
-    console.log("accessLevel", accessLevel)
+    console.log("permission", permission);
+    const accessLevel = permission.access_level;
+    console.log("accessLevel", accessLevel);
 
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
@@ -371,18 +357,18 @@ router.get('/team', async (req, res) => {
       const tempProjectData = await Project.findAll({
         where: { division_id: division[i].id },
         attributes: [
-          'id',
-          'project_name',
-          'description',
-          'division_id',
-          'due_date',
-          'createdAt'
+          "id",
+          "project_name",
+          "description",
+          "division_id",
+          "due_date",
+          "createdAt",
         ],
         include: [
           {
             model: Division,
-          }
-        ]
+          },
+        ],
       });
 
       const temp = tempProjectData.map((val) => val.get({ plain: true }));
@@ -420,46 +406,45 @@ router.get('/team', async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 
-router.get('/profile', async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
     if (!req.session.logged_in) {
       res.redirect("/");
       return;
     }
-    console.log('top of dashboard')
+    console.log("top of dashboard");
 
     //find employee via logged in user data
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
-    
+
     //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
 
     // find the sessions user
     const userData = await User.findOne({
-      where: {id: req.session.user_id}
+      where: { id: req.session.user_id },
     });
 
     //serialize userData
     const user = userData.get({ plain: true });
 
-
     // find permissions of current user
     const userPermission = await Permission.findOne({
-      where: { id: user.permission_id}
-    })
+      where: { id: user.permission_id },
+    });
 
-    console.log("userPermission", userPermission)
+    console.log("userPermission", userPermission);
 
     //serialize permission data
     const permission = userPermission.get({ plain: true });
-    console.log('permission', permission)
-    const accessLevel = permission.access_level
-    console.log("accessLevel", accessLevel)
+    console.log("permission", permission);
+    const accessLevel = permission.access_level;
+    console.log("accessLevel", accessLevel);
 
     const orgData = await Organization.findOne({
       where: { id: employeeData.organization_id },
@@ -482,18 +467,18 @@ router.get('/profile', async (req, res) => {
       const tempProjectData = await Project.findAll({
         where: { division_id: division[i].id },
         attributes: [
-          'id',
-          'project_name',
-          'description',
-          'division_id',
-          'due_date',
-          'createdAt'
+          "id",
+          "project_name",
+          "description",
+          "division_id",
+          "due_date",
+          "createdAt",
         ],
         include: [
           {
             model: Division,
-          }
-        ]
+          },
+        ],
       });
 
       const temp = tempProjectData.map((val) => val.get({ plain: true }));
@@ -531,6 +516,6 @@ router.get('/profile', async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 
 module.exports = router;

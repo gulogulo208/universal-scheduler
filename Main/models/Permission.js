@@ -3,8 +3,6 @@ const sequelize = require('../config/connection');
 
 class Permission extends Model {};
 
-//userID, organizatonID, roleID
-
 Permission.init(
     {
       id: {

@@ -123,7 +123,7 @@ router.get("/dashboard", async (req, res) => {
       organization,
       employee,
       division,
-      //project,
+      project,
       accessLevel,
       logged_in: req.session.logged_in,
     });
@@ -395,17 +395,24 @@ router.get('/team', async (req, res) => {
       for (let j = 0; j < scratch[i].length; j++) {
         project.push(scratch[i][j]);
       }
-    }
-
-    // const staff = Employee.findAll({
-    //   where: {id: employeeData.organization_id}
-    // });
-
-    // const myStaff = staff.map((val) => val.get({plain: true}))
-
-    // console.log(myStaff)
-
+    };
     console.log("PROJ_DATA", project);
+
+    const staff = await Employee.findAll({
+      where: {organization_id: req.session.org_id}, 
+      include: [
+        {
+          model: User, Project, Division, EmployeeAssignments
+        }
+      ]
+    });
+
+    console.log("staff", staff)
+
+    const myStaff = staff.map((val) => val.get({plain: true}))
+
+    console.log("myStaff", myStaff)
+
 
     res.render("team", {
       layout: "panel",
@@ -414,7 +421,7 @@ router.get('/team', async (req, res) => {
       division,
       project,
       accessLevel,
-      // myStaff,
+      myStaff,
       logged_in: req.session.logged_in,
     });
   } catch (error) {

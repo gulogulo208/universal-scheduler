@@ -417,7 +417,6 @@ router.get("/team", async (req, res) => {
       project,
       accessLevel,
       myStaff,
-      divisionProjects,
       logged_in: req.session.logged_in,
     });
   } catch (error) {

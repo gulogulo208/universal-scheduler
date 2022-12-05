@@ -23,6 +23,7 @@ async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
     Hi ${first_name}!
 
     Your temporary password: ${tempPassword}
+    ** After you login, click the settings icon in the top right corner to change your password **
 
     Login here: ${inviteLink}
     `, // plain text body
@@ -30,6 +31,7 @@ async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
     <div>
     Hi ${first_name}!<br>
     <br>Your temporary password: ${tempPassword}<br>
+    ** After you login, click the settings icon in the top right corner to change your password **<br>
     <br>Login here: ${inviteLink}
     </div>
     `, // html body

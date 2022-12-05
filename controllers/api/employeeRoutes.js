@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 
     const employee = empData.get({ plain: true });
 
-    const inviteLink = "http://localhost:3001/";
+    const inviteLink = "https://birds-eye-app.herokuapp.com/";
 
     sendInviteEmail(employee.first_name, user.email, tempPassword, inviteLink);
 

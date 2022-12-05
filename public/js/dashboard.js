@@ -320,10 +320,10 @@ if (saveBtn) {
   saveBtn.addEventListener("click", handleUpdateProfile);
 }
 
-let changePasswordBtn = document.getElementById("changePasswordBtn");
-if (changePasswordBtn) {
-  changePasswordBtn.addEventListener("click", handleChangePassword);
-}
+// let changePasswordBtn = document.getElementById("changePasswordBtn");
+// if (changePasswordBtn) {
+//   changePasswordBtn.addEventListener("click", handleChangePassword);
+// }
 
 let divisionBtn = document.getElementById("divisionBtn");
 if (divisionBtn) {
@@ -340,9 +340,41 @@ if (employeeBtn) {
   employeeBtn.addEventListener("click", showEmployeeModal);
 }
 
-let settingsBtn = document.getElementById("settingsBtn");
-if (settingsBtn) {
-  settingsBtn.addEventListener("click", showSettingsModal);
+let project_link = document.getElementById("project_link");
+let profile_link = document.getElementById("profile_link");
+if (document.getElementById("team_link")) {
+  let team_link = document.getElementById("team_link");
+  if (document.location.pathname === "/projects") {
+    team_link.classList.remove("active");
+    profile_link.classList.remove("active");
+    project_link.classList.add("active");
+  } else if (document.location.pathname === "/profile") {
+    team_link.classList.remove("active");
+    project_link.classList.remove("active");
+    profile_link.classList.add("active");
+  } else if (document.location.pathname === "/team") {
+    project_link.classList.remove("active");
+    profile_link.classList.remove("active");
+    team_link.classList.add("active");
+  } else if (document.location.pathname === "/dashboard") {
+    team_link.classList.remove("active");
+    profile_link.classList.remove("active");
+    project_link.classList.remove("active");
+  }
+} else {
+  if (document.location.pathname === "/projects") {
+    profile_link.classList.remove("active");
+    project_link.classList.add("active");
+  } else if (document.location.pathname === "/profile") {
+    project_link.classList.remove("active");
+    profile_link.classList.add("active");
+  } else if (document.location.pathname === "/team") {
+    project_link.classList.remove("active");
+    profile_link.classList.remove("active");
+  } else if (document.location.pathname === "/dashboard") {
+    profile_link.classList.remove("active");
+    project_link.classList.remove("active");
+  }
 }
 
 let addBtn = document.getElementById("addBtn");

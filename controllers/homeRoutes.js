@@ -5,7 +5,6 @@ const {
   Division,
   Permission,
   User,
-  EmployeeAssignments,
 } = require("../models");
 
 // Imports

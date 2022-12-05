@@ -80,4 +80,24 @@ router.put("/assign", async (req, res) => {
   }
 })
 
+router.delete("/", async (req, res) => {
+  try {
+    const removeEmp = await Employee.destroy(
+      {
+        where: { id: req.body.getId },
+      }
+    );
+
+    const removeUser = await User.destroy(
+      {
+        where: { id: req.body.getId },
+      }
+    )
+
+    res.status(200).json({ message: "Employee and User removed" });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
 module.exports = router;

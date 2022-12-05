@@ -269,28 +269,30 @@ const handleAssignEmployee = async (event) => {
   }
 }
 
-/* const handleUpdateEmail = async (event) => {
+const handleRemoveEmployee = async (event) => {
   try {
-    event.preventDefault();
+    const getId = event.target.getAttribute("data-id");
 
-    const email = document.getElementById("email").value.trim();
-
-    const response = await fetch("/api/users/updateEmail", {
-      method: "PUT",
-      body: JSON.stringify({ email }),
+    const response = await fetch("/api/employee", {
+      method: "DELETE",
+      body: JSON.stringify({ getId }),
       headers: {
         "Content-Type": "application/json",
-      }
-    })
+      },
+    });
 
     if (response.ok) {
       location.reload();
     }
-
   } catch (error) {
     console.error(error);
   }
-} */
+}
+
+const removeEmployee = document.querySelectorAll("#removeEmployee")
+for (let i = 0; i < removeEmployee.length; i++) {
+  removeEmployee[i].addEventListener("click", handleRemoveEmployee);
+}
 
 function showNewPassword() {
   var x = document.getElementById("new_password");
@@ -310,20 +312,10 @@ function showPassword() {
   }
 }
 
-/* let addEmployeeBtn = document.getElementById("addEmployee");
-if (addEmployeeBtn) {
-  addEmployeeBtn.addEventListener("click", handleAssignEmployee);
-} */
-
 let saveBtn = document.getElementById("saveBtn");
 if (saveBtn) {
   saveBtn.addEventListener("click", handleUpdateProfile);
 }
-
-// let changePasswordBtn = document.getElementById("changePasswordBtn");
-// if (changePasswordBtn) {
-//   changePasswordBtn.addEventListener("click", handleChangePassword);
-// }
 
 let divisionBtn = document.getElementById("divisionBtn");
 if (divisionBtn) {

@@ -194,13 +194,14 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Position</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Division</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Completion</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     {{#each employee}}
+                    {{#if (hasProject project_id)}}
                     <tr>
                       <td>
                         <div class="d-flex px-2">
@@ -232,6 +233,7 @@
                         </button>
                       </td>
                     </tr>
+                    {{/if}}
                     {{/each}}
                   </tbody>
                 </table>

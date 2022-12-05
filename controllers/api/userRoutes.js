@@ -7,7 +7,7 @@ router.post("/login", async (req, res) => {
     const userData = await User.findOne({
       where: { email: req.body.email },
     });
-
+    
     const empData = await Employee.findOne({
       where: { user_id: userData.id },
     });
@@ -122,5 +122,27 @@ router.put("/changePassword", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+router.put("/updateEmail", async (req, res) => {
+  try {
+    const updateUser = await User.update(
+      {
+      email: req.body.email,
+      },
+      {
+        where: { id: req.session.user_id },
+      }
+    );
+
+    if (!updateUser) {
+      res.status(400).json({ message: "Couldn't update email" });
+    }
+
+    res.status(200).end();
+
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
 
 module.exports = router;

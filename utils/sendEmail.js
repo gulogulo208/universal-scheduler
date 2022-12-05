@@ -1,5 +1,6 @@
 "use strict";
 const nodemailer = require("nodemailer");
+
 require("dotenv").config();
 
 // async..await is not allowed in global scope, must use a wrapper

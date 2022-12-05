@@ -6,6 +6,7 @@ const requestLogin = async (event) => {
   try {
     event.preventDefault();
 
+
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
     const rememberMe = document.getElementById("rememberMe").checked;

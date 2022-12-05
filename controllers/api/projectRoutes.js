@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
     }
 
     res.status(200).json({ message: "Project created successfully" });
+
   } catch (error) {
     res.status(500).json(error);
   }

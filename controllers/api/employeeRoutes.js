@@ -41,4 +41,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/edit", async (req, res) => {
+  try {
+    const updateEmp = await Employee.update({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name
+    }, 
+    {
+      where: { id: req.session.user_id}
+    })
+
+    if (!updateEmp) {
+      res.status(400).json({ message: "Couldn't update user information" });
+      return;
+    }
+
+    res.status(200).end();
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
 module.exports = router;

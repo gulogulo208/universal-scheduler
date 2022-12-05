@@ -31,6 +31,7 @@ router.get("/dashboard", async (req, res) => {
       res.redirect("/");
       return;
     }
+
     console.log("top of dashboard");
 
     //find employee via logged in user data
@@ -132,6 +133,7 @@ router.get("/project/:id", async (req, res) => {
       res.redirect("/");
       return;
     }
+
     //find employee via logged in user data
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
@@ -209,7 +211,6 @@ router.get("/projects", async (req, res) => {
     const employeeData = await Employee.findAll({
       where: { organization_id: req.session.org_id },
     });
-
     //serialize employee data
     const employee = employeeData.map((emp) => emp.get({ plain: true }));
     console.log("EMP_DATA", employee);
@@ -310,7 +311,6 @@ router.get("/team", async (req, res) => {
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
-
     //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
@@ -399,7 +399,6 @@ router.get("/team", async (req, res) => {
 
     console.log("myStaff", myStaff)
 
-
     res.render("team", {
       layout: "panel",
       organization,
@@ -427,7 +426,6 @@ router.get("/profile", async (req, res) => {
     const employeeData = await Employee.findOne({
       where: { id: req.session.user_id },
     });
-
     //serialize employee data
     const employee = employeeData.get({ plain: true });
     console.log("EMP_DATA", employee);
@@ -514,6 +512,7 @@ router.get("/profile", async (req, res) => {
       layout: "panel",
       organization,
       employee,
+      user,
       division,
       project,
       accessLevel,

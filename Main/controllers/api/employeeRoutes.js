@@ -9,8 +9,8 @@ router.post("/", async (req, res) => {
     const tempPassword = uuidv4();
 
     const userData = await User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      // first_name: req.body.first_name,
+      // last_name: req.body.last_name,
       email: req.body.email,
       password: tempPassword,
       permission_id: 2,
@@ -19,8 +19,8 @@ router.post("/", async (req, res) => {
     const user = userData.get({ plain: true });
 
     const empData = await Employee.create({
-      first_name: user.first_name,
-      last_name: user.last_name,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       position: req.body.position,
       organization_id: req.session.org_id,
       user_id: user.id,
@@ -30,7 +30,12 @@ router.post("/", async (req, res) => {
 
     const inviteLink = "http://localhost:3001/";
 
-    sendInviteEmail(user.first_name, user.email, tempPassword, inviteLink);
+    sendInviteEmail(
+      employee.first_name,
+      employee.email,
+      tempPassword,
+      inviteLink
+    );
 
     res.send(200);
   } catch (error) {

@@ -15,8 +15,8 @@ router.post("/", async (req, res) => {
       return;
     }
 
-    res.status(200).json({message: "Project created successfully"})
-    
+    res.status(200).json({ message: "Project created successfully" });
+
   } catch (error) {
     res.status(500).json(error);
   }
@@ -30,6 +30,6 @@ router.get("/projects", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 
 module.exports = router;

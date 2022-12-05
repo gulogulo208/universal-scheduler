@@ -1,6 +1,8 @@
 "use strict";
 const nodemailer = require("nodemailer");
 
+require("dotenv").config();
+
 // async..await is not allowed in global scope, must use a wrapper
 async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
   // create reusable transporter object using the default SMTP transport
@@ -8,7 +10,7 @@ async function sendInviteEmail(first_name, email, tempPassword, inviteLink) {
     service: "Hotmail",
     auth: {
       user: "birdseyeinvite@outlook.com",
-      pass: "123456birds",
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 

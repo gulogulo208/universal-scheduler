@@ -36,20 +36,13 @@ Project.belongsToMany(Employee, {
 	onDelete: null,
 });
 
-// Employee.hasOne(Project, {
-//   through: EmployeeAssignments,
-//   foreignKey: "employee_id",
-// });
-
 Employee.hasOne(Organization, {
 	foreignKey: 'organization_id',
 	onDelete: null,
 });
 
-// Organization has many Divisions
 Organization.hasMany(Division);
 
-// Division belongs to Organization
 Division.belongsTo(Organization, {
 	foreignKey: 'organization_id',
 });

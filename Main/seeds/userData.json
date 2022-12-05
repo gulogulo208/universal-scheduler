@@ -1,33 +1,56 @@
 [
-    {
-      "email": "Tommy@hotmail.com",
-      "password": "password12345",
-      "permission_id": 1
-    },
-    {
-      "email": "amelia@gmail.com",
-      "password": "password12345",
-      "permission_id": 2
-    },
-    {
-      "email": "eddie@aol.com",
-      "password": "password12345",
-      "permission_id": 1
-    },
-    {
-      "email": "bob@hotmail.com",
-      "password": "password12345",
-      "permission_id": 2
-    },
-    {
-      "email": "jeff@gmail.com",
-      "password": "password12345",
-      "permission_id": 2
-    },
-    {
-      "email": "beth@aol.com",
-      "password": "password12345",
-      "permission_id": 2
-    }
-  ]
-  
+	{
+		"email": "Tommy@hotmail.com",
+		"password": "password12345",
+		"permission_id": 1,
+		"first_name": "Tommy",
+		"last_name": "Forkspoon",
+		"position": "Engineer",
+		"organization_id": 1
+	},
+	{
+		"email": "amelia@gmail.com",
+		"password": "password12345",
+		"permission_id": 2,
+		"first_name": "Amelia",
+		"last_name": "Knifehandle",
+		"position": "Lawyer",
+		"organization_id": 1
+	},
+	{
+		"email": "eddie@aol.com",
+		"password": "password12345",
+		"permission_id": 1,
+		"first_name": "Eddie",
+		"last_name": "VanSteeringWheel",
+		"position": "Salesman",
+		"organization_id": 1
+	},
+	{
+		"email": "bob@hotmail.com",
+		"password": "password12345",
+		"permission_id": 2,
+		"first_name": "Bob",
+		"last_name": "Cobblestones",
+		"position": "Accountant",
+		"organization_id": 1
+	},
+	{
+		"email": "jeff@gmail.com",
+		"password": "password12345",
+		"permission_id": 2,
+		"first_name": "Jeffrey",
+		"last_name": "Haverfordshire",
+		"position": "Human Resources Manager",
+		"organization_id": 1
+	},
+	{
+		"email": "beth@aol.com",
+		"password": "password12345",
+		"permission_id": 2,
+		"first_name": "Beth",
+		"last_name": "Squidface",
+		"position": "Engineer",
+		"organization_id": 1
+	}
+]

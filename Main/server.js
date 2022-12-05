@@ -3,6 +3,8 @@ const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
+// const { seedDatabase } = require('./seeds/serverSeed')
+
 
 // const Handlebars = require('handlebars');
 
@@ -64,5 +66,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
+  app.listen(PORT, () => { console.log("Now listening") 
+  // seedDatabase();
+});
+  
 });

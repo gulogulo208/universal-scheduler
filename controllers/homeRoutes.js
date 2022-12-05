@@ -72,6 +72,11 @@ router.get("/dashboard", async (req, res) => {
 
     const divData = await Division.findAll({
       where: { organization_id: organization.id },
+      include: [
+        {
+          model: Project,
+        }
+      ]
     });
     const division = divData.map((val) => val.get({ plain: true }));
     console.log("DIV_DATA", division);
@@ -412,6 +417,7 @@ router.get("/team", async (req, res) => {
       project,
       accessLevel,
       myStaff,
+      divisionProjects,
       logged_in: req.session.logged_in,
     });
   } catch (error) {

@@ -38,13 +38,13 @@
   loginForm.addEventListener("submit", requestLogin);
 }; */
 
+if (localStorage.getItem("email")) {
+  document.getElementById("email").value = localStorage.getItem("email");
+}  
+
 const requestLogin = async (event) => {
   try {
-    event.preventDefault();
-
-    if (localStorage.getItem("email")) {
-      document.getElementById("email").value = localStorage.getItem("email");
-    }    
+    event.preventDefault();  
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();

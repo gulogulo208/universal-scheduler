@@ -312,6 +312,11 @@ function showPassword() {
   }
 }
 
+let changePasswordBtn = document.getElementById("changePasswordBtn");
+if (changePasswordBtn) {
+  changePasswordBtn.addEventListener("click", handleChangePassword);
+}
+
 let saveBtn = document.getElementById("saveBtn");
 if (saveBtn) {
   saveBtn.addEventListener("click", handleUpdateProfile);

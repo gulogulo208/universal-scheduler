@@ -24,7 +24,7 @@ To install the project, download all code via the included GitHUb link below. On
 
 GitHub: https://github.com/gulogulo208/universal-scheduler
 
-Heroku: https://jamesramblinblog.herokuapp.com/
+Heroku: https://birds-eye-app.herokuapp.com/
 
 ## Usage
 

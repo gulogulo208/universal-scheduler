@@ -411,6 +411,7 @@ router.get("/team", async (req, res) => {
 
     res.render("team", {
       layout: "panel",
+      user,
       organization,
       //employee,
       division,

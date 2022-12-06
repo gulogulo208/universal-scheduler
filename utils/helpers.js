@@ -24,5 +24,5 @@ module.exports = {
       const available = true;
       return available;
     }
-  }
+  },
 };

@@ -16,7 +16,7 @@
 
 BirsEye is a project management and employee tracker tool that enables managers and small business owner to model their organizations structure, track their staff roster and setup projects while tracking their progress. BirdEye allows managers to send new staff email invites to their organization and provides managers access to tools inaccessible to lower level staff.
 
-![deployed app image](./Assets/deployed-screenshot.png)
+![deployed app image](./assets/deployed-screenshot.png)
 
 ## Installation
 
@@ -24,7 +24,7 @@ To install the project, download all code via the included GitHUb link below. On
 
 GitHub: https://github.com/gulogulo208/universal-scheduler
 
-Heroku: https://jamesramblinblog.herokuapp.com/
+Heroku: https://birds-eye-app.herokuapp.com/
 
 ## Usage
 

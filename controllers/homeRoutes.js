@@ -326,11 +326,11 @@ router.get("/team", async (req, res) => {
     });
 
     //serialize userData
-    const user = userData.get({ plain: true });
+    const userAcc = userData.get({ plain: true });
 
     // find permissions of current user
     const userPermission = await Permission.findOne({
-      where: { id: user.permission_id },
+      where: { id: userAcc.permission_id },
     });
 
     console.log("userPermission", userPermission);
@@ -411,7 +411,7 @@ router.get("/team", async (req, res) => {
 
     res.render("team", {
       layout: "panel",
-      user,
+      userAcc,
       organization,
       //employee,
       division,

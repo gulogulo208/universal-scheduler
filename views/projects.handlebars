@@ -202,6 +202,7 @@
                   <tbody>
                     {{#each employee}}
                     {{#if (hasProject project_id)}}
+                    {{#if (isUser ../user.id id)}}
                     <tr>
                       <td>
                         <div class="d-flex px-2">
@@ -229,6 +230,7 @@
                       </td>
                     </tr>
                     {{/if}}
+                    {{/if}}
                     {{/each}}
                   </tbody>
                 </table>
@@ -251,8 +253,10 @@
                 <input class="form-control" list="datalistOptions" id="employee_id" placeholder="Type to search...">
               <datalist id="datalistOptions">
                 {{#each employee}}
+                {{#if (isUser ../user.id id)}}
                 <option value={{id}}>
                   <div>{{last_name}}, {{first_name}}</div>
+                {{/if}}
                 {{/each}}
               </datalist>
             </div>

@@ -162,9 +162,11 @@
                         <span class="badge badge-sm bg-gradient-success">{{project.division.div_name}}</span>
                       </td>
                       <td class="align-middle">
+                        {{#if (isUser ../userAcc.id user.id)}}
                         <a class="text-secondary font-weight-bold text-xs" id="removeEmployee" data-id="{{user.id}}" data-toggle="tooltip" data-original-title="Edit user">
                           Remove
                         </a>
+                        {{/if}}
                       </td>
                     </tr>
                     {{/each}}

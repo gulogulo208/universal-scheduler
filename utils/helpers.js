@@ -25,4 +25,11 @@ module.exports = {
       return available;
     }
   },
+  isUser: (val, empVal) => {
+    if (val === empVal) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 };

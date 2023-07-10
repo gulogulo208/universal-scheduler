@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Project, Division, Employee } = require("../../models");
+const { Project, Division, Employee, EmployeeAssignments } = require("../../models");
 
 router.post("/", async (req, res) => {
   try {
@@ -31,5 +31,29 @@ router.get("/projects", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+router.put('/assign', async (req, res) => {
+  try {
+    // const assignNewEmployee = await EmployeeAssignments.create({
+    //   employee_id: req.body.empId, 
+    //   project_id: req.body.projId
+    // })
+
+    const changeEmpProj = await Employee.update(
+      {
+        project_id: req.body.projId
+      },
+      {
+      where: {id: req.body.empId}
+    }
+    )
+    // editEmpAssignment = await Employee.post({
+
+    // })
+    res.status(200).json({message: "Employee assigned succesfully!"})
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
 
 module.exports = router;
